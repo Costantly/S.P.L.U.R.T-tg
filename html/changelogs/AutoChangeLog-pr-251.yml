@@ -1,0 +1,4 @@
+author: "MosleyTheMalO"
+delete-after: True
+changes:
+  - rscadd: "Now roundend reports can be sent as embeds"
