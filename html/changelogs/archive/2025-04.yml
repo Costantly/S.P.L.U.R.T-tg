@@ -4,15 +4,13 @@
       april fools.
   - rscadd: Adds a new storyteller, "The Enemy Within".
 2025-04-02:
+  Fabian272:
+  - bugfix: Fixes Tiziran Black Broth recipe
   LT3:
   - rscadd: 'Added new carp variant: carpmospheric technician'
   StrangeWeirdKitten:
   - rscdel: Removes the handheld crew monitor from the medical lathes.
   - rscdel: Disaboots have been removed from apirl fools.
-  plsleavemealon:
-  - bugfix: fixed ethereals powercell back to bubbers values
-  Fabian272:
-  - bugfix: Fixes Tiziran Black Broth recipe
   evandarksky:
   - rscadd: The pitcher, a 120-capacity container for all your bulk boozing (or lemonade)
       needs.
@@ -30,3 +28,10 @@
   - rscadd: bdragon, booty, boobs, and SCP crayon drawings.
   - rscadd: assorted SPLURT plushies
   - rscadd: shadow wood and shadow wood furniture
+  plsleavemealon:
+  - bugfix: fixed ethereals powercell back to bubbers values
+2025-04-03:
+  Jinshee:
+  - bugfix: fixed wagging state for all shadekin tails and ring tail (long)
+  MosleyTheMalO:
+  - rscadd: Now roundend reports can be sent as embeds
