@@ -1,13 +1,13 @@
-#define CUMPLUS_MULT_GLOBAL 1.75
-#define CUMPLUS_MULT_TESTI 2
-#define CUMPLUS_MULT_VAGI 2
-#define CUMPLUS_MULT_BOOBI 2
+#define CUMPLUS_MULT_GLOBAL 4
+#define CUMPLUS_MULT_TESTI 6
+#define CUMPLUS_MULT_VAGI 6
+#define CUMPLUS_MULT_BOOBI 6
 
 /datum/quirk/cum_plus
 	name = "Extra-Productive Genitals"
 	desc = "Your genitals can hold twice the amount of fluid expected for their size, and produce slightly faster."
 	value = 0
-	gain_text = span_purple("You feel pressure in your groin.")
+	gain_text = span_purple("You feel an incredible pressure in your groin.")
 	lose_text = span_purple("You feel a weight lifted from your groin.")
 	medical_record_text = "Patient exhibits increased production of sexual fluids."
 	icon = FA_ICON_HEART_CIRCLE_PLUS
