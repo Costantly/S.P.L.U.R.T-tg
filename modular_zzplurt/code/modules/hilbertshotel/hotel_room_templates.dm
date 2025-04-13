@@ -44,6 +44,21 @@
 /datum/map_template/ghost_cafe_rooms/grotto2
 	category = GHC_SPECIAL
 
+/datum/map_template/ghost_cafe_rooms/foxbar
+	category = GHC_APARTMENT
+
+/datum/map_template/ghost_cafe_rooms/nightclub
+	category = GHC_STATION
+
+/datum/map_template/ghost_cafe_rooms/eva
+	category = GHC_STATION
+
+/datum/map_template/ghost_cafe_rooms/oasis
+	category = GHC_BEACH
+
+/datum/map_template/ghost_cafe_rooms/oasisalt
+	category = GHC_BEACH
+
 // SPLURT's custom room templates
 
 /datum/map_template/ghost_cafe_rooms/apartment_city
