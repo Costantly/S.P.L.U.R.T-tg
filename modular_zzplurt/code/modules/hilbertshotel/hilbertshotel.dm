@@ -1,10 +1,10 @@
-/*
-  _  _ _ _ _             _   _      	 _  _     _       _
- | || (_) | |__  ___ _ _| |_( )___ 		| || |___| |_ ___| |
- | __ | | | '_ \/ -_) '_|  _|/(_-< 		| __ / _ \  _/ -_) |
- |_||_|_|_|_.__/\___|_|  \__| /__/ 		|_||_\___/\__\___|_|
+//
+//   _  _ _ _ _             _   _      	 _  _     _       _
+//  | || (_) | |__  ___ _ _| |_( )___ 		| || |___| |_ ___| |
+//  | __ | | | '_ \/ -_) '_|  _|/(_-< 		| __ / _ \  _/ -_) |
+//  |_||_|_|_|_.__/\___|_|  \__| /__/ 		|_||_\___/\__\___|_|
 
-*/
+//
 
 /obj/item/hilbertshotel
 	name = "Hilbert's Hotel"
@@ -54,6 +54,9 @@
 
 	to_chat(user, span_notice("You invite [target_mob] to the hotel."))
 	ui_interact(target_mob)
+
+/obj/item/hilbertshotel/ghostdojo
+	w_class = WEIGHT_CLASS_GIGANTIC
 
 /obj/item/hilbertshotel/ghostdojo/examine(mob/user)
 	. = ..()
