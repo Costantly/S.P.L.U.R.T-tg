@@ -1,0 +1,15 @@
+2025-05-02:
+  Nuk5513:
+  - rscadd: chryssalid simplemob that xenobiologist can attempt to summon through
+      gold extracts
+  Phoenix4O4:
+  - rscadd: Added printable cortical cybernetic brain to Upgraded Cybernetic Organs
+      techweb node
+  - rscadd: Added xenoarch strange rocks as possible drops from boulder processing
+  - bugfix: Fixed ammo counter HUD not updating for self-recharging energy weapons
+2025-05-06:
+  Fabian272:
+  - bugfix: Raw Meatpizza now shows in the cooking menu rather than crafting.
+  IgiariValkyr:
+  - rscadd: The OP-15 SMART-Rifle patent has been bought out by a new company, and
+      it's being sold at cargo under Armory Access.

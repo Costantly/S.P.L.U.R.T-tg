@@ -1,4 +1,0 @@
-author: "MosleyTheMalO"
-delete-after: True
-changes:
-  - admin: "adds discord logging for admin actions"
