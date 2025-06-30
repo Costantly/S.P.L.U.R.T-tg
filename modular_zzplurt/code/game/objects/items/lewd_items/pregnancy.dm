@@ -44,3 +44,15 @@ GLOBAL_LIST_INIT(pregnancy_egg_skins, list( \
 	base_icon_state = "egg"
 	w_class = WEIGHT_CLASS_HUGE
 	obj_flags = parent_type::obj_flags | UNIQUE_RENAME
+	uses_integrity = TRUE
+	integrity_failure = 0.5
+
+/obj/item/food/egg/oviposition/update_icon_state()
+	. = ..()
+	icon_state = base_icon_state
+	if(get_integrity_percentage() < integrity_failure)
+		icon_state += "_broken"
+
+/obj/item/food/egg/oviposition/atom_break(damage_flag)
+	. = ..()
+	update_appearance(UPDATE_ICON)

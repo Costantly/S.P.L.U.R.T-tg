@@ -2,6 +2,7 @@
 	name = "crystal core"
 	icon_state = "ethereal_heart-on"
 	base_icon_state = "ethereal_heart"
+	beat_noise = "a pulsing crackle"
 	visual = TRUE //This is used by the ethereal species for color
 	desc = "A crystal-like organ that functions similarly to a heart for Ethereals. It can revive its owner."
 
@@ -231,9 +232,9 @@
 	regenerating.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
 
 	if(prob(10)) //10% chance for a severe trauma
-		regenerating.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_ABSOLUTE)
+		regenerating.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_MAGIC)   //Bubber Edit was TRAUMA_RESILIENCE_ABSOLUTE
 	else
-		regenerating.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_ABSOLUTE)
+		regenerating.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_MAGIC)     //Bubber Edit was TRAUMA_RESILIENCE_ABSOLUTE
 
 	// revive calls fully heal -> deletes the crystal.
 	// this qdeleted check is just for sanity.

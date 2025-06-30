@@ -10,7 +10,9 @@
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
@@ -27,16 +29,14 @@ SUBSYSTEM_DEF(player_ranks)
 
 	load_donators()
 	load_mentors()
-	load_vetted_ckeys()
 	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/player_ranks/Destroy()
-	. = ..()
-
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(vetted_controller)
+	. = ..()
 
 /**
  * Returns whether or not the user is qualified as a donator.
@@ -170,9 +170,11 @@ SUBSYSTEM_DEF(player_ranks)
 	)
 
 	if(!query_load_player_rank.warn_execute())
+		qdel(query_load_player_rank) // SPLURT EDIT - Fix SQL qdel
 		return
 
 	rank_controller.load_from_query(query_load_player_rank)
+	qdel(query_load_player_rank) // SPLURT EDIT - Fix SQL qdel
 
 
 /// Allows fetching the appropriate player_rank_controller based on its
@@ -224,7 +226,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
@@ -278,8 +280,10 @@ SUBSYSTEM_DEF(player_ranks)
 	)
 
 	if(!query_add_player_rank.warn_execute())
+		qdel(query_add_player_rank) // SPLURT EDIT - Fix SQL qdel
 		return FALSE
 
+	qdel(query_add_player_rank) // SPLURT EDIT - Fix SQL qdel
 	controller.add_player(ckey)
 	return TRUE
 
@@ -313,7 +317,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
@@ -357,8 +361,10 @@ SUBSYSTEM_DEF(player_ranks)
 	)
 
 	if(!query_remove_player_rank.warn_execute())
+		qdel(query_remove_player_rank) // SPLURT EDIT - Fix SQL qdel
 		return FALSE
 
+	qdel(query_remove_player_rank) // SPLURT EDIT - Fix SQL qdel
 	controller.remove_player(ckey)
 	return TRUE
 
@@ -376,7 +382,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights_for(admin, R_PERMISSIONS | R_DEBUG | R_SERVER))
+	if(!check_rights_for(admin, R_ADMIN | R_DEBUG | R_SERVER))
 		to_chat(admin, span_warning("You do not possess the permissions to do this."))
 		return
 
@@ -413,11 +419,14 @@ SUBSYSTEM_DEF(player_ranks)
 	)
 
 	if(!query_get_existing_entries.warn_execute())
+		qdel(query_get_existing_entries) // SPLURT EDIT - Fix SQL qdel
 		return
 
 	while(query_get_existing_entries.NextRow())
 		var/ckey = ckey(query_get_existing_entries.item[INDEX_CKEY])
 		ckeys_to_migrate -= ckey
+
+	qdel(query_get_existing_entries) // SPLURT EDIT - Fix SQL qdel
 
 	var/list/rows_to_insert = list()
 

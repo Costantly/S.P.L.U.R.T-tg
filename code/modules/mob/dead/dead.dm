@@ -29,7 +29,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/canUseStorage()
 	return FALSE
 
-/mob/dead/get_status_tab_items()
+/mob/dead/get_status_tab_items() // BUBBER ADDITION START - /tg/ removed this in #90572, but we still use a custom lobby screen
 	. = ..()
 	if(SSticker.HasRoundStarted())
 		return
@@ -42,10 +42,9 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		. += "Time To Start: SOON"
 
 	. += "Players: [LAZYLEN(GLOB.clients)]"
-	. += "Players Ready: [SSticker.totalPlayersReady]" //Bubberstation edit
+	. += "Players Ready: [SSticker.totalPlayersReady]"
 	if(client.holder)
-		// . += "Players Ready: [SSticker.totalPlayersReady]" Bubberstation edit
-		. += "Admins Ready: [SSticker.total_admins_ready] / [length(GLOB.admins)]"
+		. += "Admins Ready: [SSticker.total_admins_ready] / [length(GLOB.admins)]" // BUBBER ADDITION END - /tg/ removed this in #90572, but we still use a custom lobby screen
 
 #define SERVER_HOPPER_TRAIT "server_hopper"
 
@@ -77,7 +76,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	var/client/hopper = client
 	to_chat(hopper, span_notice("Sending you to [pick]."))
-	var/atom/movable/screen/splash/fade_in = new(null, src, hopper, FALSE)
+	var/atom/movable/screen/splash/fade_in = new(null, null, hopper, FALSE)
 	fade_in.Fade(FALSE)
 
 	ADD_TRAIT(src, TRAIT_NO_TRANSFORM, SERVER_HOPPER_TRAIT)

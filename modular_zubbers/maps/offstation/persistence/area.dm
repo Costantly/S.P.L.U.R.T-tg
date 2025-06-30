@@ -6,6 +6,7 @@
 	icon_state = "syndie-ship"
 	outdoors = FALSE
 	ignore_weather_sfx = TRUE
+	flags_1 = parent_type::flags_1 & ~(CAN_BE_DIRTY_1) // Stops SSDecay from affecting the Persistance
 
 // Cargo
 
@@ -230,3 +231,20 @@
 /datum/weather/rad_storm/New()
 	. = ..()
 	protected_areas += /area/ruin/space/has_grav/bubbers/persistance
+
+//roof areas
+/area/ruin/space/has_grav/bubbers/persistance/roof
+	name= "Persistence Roof"
+	outdoors = TRUE
+	sound_environment = SOUND_AREA_ICEMOON
+	ignore_weather_sfx = FALSE
+
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen
+	name= "Persistence Shield Generator"
+	outdoors = TRUE
+	sound_environment = SOUND_AREA_ICEMOON
+	ignore_weather_sfx = FALSE
+
+/area/ruin/space/has_grav/bubbers/persistance/controltower
+	name= "Persistence Shuttle Controller"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED

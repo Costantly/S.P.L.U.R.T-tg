@@ -107,7 +107,7 @@
 	. = ..()
 	if(visuals_only)
 		return
-	bum.dna.add_mutation(/datum/mutation/human/stoner)
+	bum.dna.add_mutation(/datum/mutation/stoner, MUTATION_SOURCE_GHOST_ROLE)
 
 /datum/outfit/beachbum/lifeguard
 	name = "Beach Lifeguard"
@@ -161,6 +161,7 @@
 	spawner_job_path = /datum/job/lifebringer
 	restricted_species = list(/datum/species/pod) //SKYRAT EDIT ADDITION
 	random_appearance = FALSE // SKYRAT EDIT ADDITION
+	quirks_enabled = TRUE // splurt edit PR 377
 
 /obj/effect/mob_spawn/ghost_role/human/seed_vault/Initialize(mapload)
 	. = ..()

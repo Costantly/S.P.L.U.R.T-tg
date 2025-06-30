@@ -75,18 +75,20 @@
 	mother_dna = new()
 	if(ishuman(mother))
 		var/mob/living/carbon/human/baby_momma = mother
+		baby_momma.dna.update_dna_identity()
 		baby_momma.dna.copy_dna(mother_dna)
 		mother_name = baby_momma.real_name
 	else
-		mother_dna.initialize_dna(random_blood_type())
+		mother_dna.initialize_dna(random_human_blood_type())
 
 	father_dna = new()
 	if(ishuman(father))
 		var/mob/living/carbon/human/baby_daddy = father
+		baby_daddy.dna.update_dna_identity()
 		baby_daddy.dna.copy_dna(father_dna)
 		father_name = baby_daddy.real_name
 	else
-		father_dna.initialize_dna(random_blood_type())
+		father_dna.initialize_dna(random_human_blood_type())
 
 	inherit_preferences(new_owner)
 	. = ..()
@@ -112,51 +114,6 @@
 		pregnancy_flags |= PREGNANCY_FLAG_INERT
 
 	pregnancy_duration = preference_source.prefs.read_preference(/datum/preference/numeric/pregnancy/duration) * PREGNANCY_DURATION_MULTIPLIER
-	pregnancy_genetic_distribution = preference_source.prefs.read_preference(/datum/preference/numeric/pregnancy/genetic_distribution)
-
-/datum/status_effect/pregnancy/proc/determine_baby_dna(mob/living/carbon/human/baby_boy)
-	//inherit species from momma no matter what
-	baby_boy.set_species(mother_dna.species.type)
-
-	//now do the rest
-	var/datum/dna/baby_dna = baby_boy.dna
-	baby_dna.features = list()
-	//features first
-	for(var/feature in (mother_dna.features | father_dna.features))
-		if(prob(pregnancy_genetic_distribution))
-			if(!father_dna.features[feature])
-				continue
-			baby_dna.features[feature] = father_dna.features[feature]
-		else
-			if(!mother_dna.features[feature])
-				continue
-			baby_dna.features[feature] = mother_dna.features[feature]
-
-	//not realistic but i am too lazy to make it work good for now
-	if(prob(pregnancy_genetic_distribution))
-		baby_dna.blood_type = father_dna.blood_type
-	else
-		baby_dna.blood_type = mother_dna.blood_type
-
-	/*
-	I am a great soft jelly thing. Smoothly rounded, with no mouth,
-	with pulsing white holes filled by fog where my eyes used to be. Rubbery appendages that were once my arms;
-	bulks rounding down into legless humps of soft slippery matter.
-	I leave a moist trail when I move.
-	Blotches of diseased, evil gray come and go on my surface, as though light is being beamed from within.
-	Outwardly: dumbly, I shamble about, a thing that could never have been known as human, a thing whose shape is so alien a travesty
-	that humanity becomes more obscene for the vague resemblance.
-	Inwardly: alone. Here. Living under the land, under the sea, in the belly of AM, whom we created because our time was badly spent
-	and we must have known unconsciously that he could do it better. At least the four of them are safe at last.
-	AM will be all the madder for that. It makes me a little happier. And yet ... AM has won, simply ... he has taken his revenge ...
-	*/
-	baby_boy.set_hairstyle(pick("Bedhead", "Bedhead 2", "Bedhead 3"), update = FALSE)
-	baby_boy.set_facial_hairstyle("Shaved", update = FALSE)
-	baby_boy.underwear = "Nude"
-	baby_boy.undershirt = "Nude"
-	baby_boy.socks = "Nude"
-
-	baby_boy.updateappearance()
 
 /datum/status_effect/pregnancy/proc/try_rename_baby(mob/user)
 	var/target_name = reject_bad_name(tgui_input_text(src, "What will the name of [mother_name || "someone"]'s offspring?", "The miracle of birth"))
@@ -278,7 +235,7 @@
 			if(egg_icon_state)
 				actually_an_egg.icon_state = egg_icon_state
 				actually_an_egg.base_icon_state = egg_icon_state
-				actually_an_egg.update_appearance()
+				actually_an_egg.update_appearance(UPDATE_ICON)
 
 	if(pregnancy_flags & PREGNANCY_FLAG_INERT)
 		return
@@ -286,7 +243,7 @@
 	var/mob/living/bouncing_baby_boy = new baby_type(location)
 	if(ishuman(bouncing_baby_boy))
 		var/mob/living/carbon/human/real_boy = bouncing_baby_boy
-		determine_baby_dna(real_boy)
+		determine_baby_dna(real_boy, src.mother_dna, src.father_dna, src.pregnancy_genetic_distribution)
 		if(baby_name)
 			real_boy.real_name = baby_name
 			real_boy.name = baby_name
@@ -294,7 +251,7 @@
 		real_boy.set_resting(new_resting = TRUE, silent = TRUE, instant = TRUE)
 	bouncing_baby_boy.AdjustUnconscious(30 SECONDS)
 
-	egg.AddComponent(/datum/component/pregnant, bouncing_baby_boy)
+	egg.AddComponent(/datum/component/pregnant, bouncing_baby_boy, mother_name, father_name, baby_name, mother_dna, father_dna, pregnancy_genetic_distribution)
 
 /atom/movable/screen/alert/status_effect/pregnancy
 	name = "Pregnant"

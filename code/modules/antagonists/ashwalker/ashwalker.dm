@@ -28,11 +28,14 @@
 	. = ..()
 	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, PROC_REF(on_examinate))
 	//owner.teach_crafting_recipe(/datum/crafting_recipe/skeleton_key) //SKYRAT EDIT REMOVAL - ASH RITUALS
+	owner.teach_crafting_recipe(/datum/crafting_recipe/arrow) //BUBBER EDIT - ASH WALKER SHOULD KNOW HOW TO FLETCH
 	if(FACTION_NEUTRAL in owner.current.faction)
 		owner.current.faction.Remove(FACTION_NEUTRAL) // ashwalkers aren't neutral; they're ashwalker-aligned
 
 /datum/antagonist/ashwalker/on_removal()
 	. = ..()
+	if(!owner.current)
+		return
 	UnregisterSignal(owner.current, COMSIG_MOB_EXAMINATE)
 	if(!(FACTION_NEUTRAL in owner.current.faction))
 		owner.current.faction.Add(FACTION_NEUTRAL)

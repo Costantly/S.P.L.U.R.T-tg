@@ -1,5 +1,23 @@
 /datum/loadout_item
 	var/can_be_colored = TRUE
+	var/donator_tier = DONATOR_TIER_NONE
+
+/datum/loadout_item/New(category)
+	. = ..()
+	if((donator_tier || LAZYLEN(ckeywhitelist)) && !donator_only)
+		donator_only = TRUE
+	if((donator_only || LAZYLEN(ckeywhitelist)) && !donator_tier)
+		donator_tier = DONATOR_TIER_1
+
+/datum/loadout_item/to_ui_data()
+	var/list/data = ..()
+	data["donator_tier"] = donator_tier
+	return data
+
+/datum/loadout_item/get_item_information()
+	. = ..()
+	if(donator_tier)
+		. += list(FA_ICON_MONEY_BILL = "Tier [donator_tier] Donator only")
 
 /datum/loadout_item/handle_loadout_action(datum/preference_middleware/loadout/manager, mob/user, action, params)
 	. = ..()
@@ -12,7 +30,8 @@
 /datum/loadout_item/on_equip_item(obj/item/equipped_item, datum/preferences/preference_source, list/preference_list, mob/living/carbon/human/equipper, visuals_only)
 	. = ..()
 
-	ASSERT(!isnull(equipped_item))
+	if(isnull(equipped_item))
+		return NONE
 
 	var/list/item_details = preference_list[item_path]
 
