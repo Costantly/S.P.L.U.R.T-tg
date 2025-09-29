@@ -9,7 +9,7 @@
 
 /datum/loadout_item/inhand/pet/mrfluff_mothroach
 	name = "Mr. Fluff"
-	item_path = /obj/item/clothing/head/mob_holder/pet/donator/centralsmith
+	item_path = /obj/item/mob_holder/pet/donator/centralsmith
 
 /datum/loadout_item/inhand/saddlebags
 	name = "saddlebags"
@@ -27,3 +27,7 @@
 /datum/loadout_item/inhand/wheelchair
 	name = "folded wheelchair"
 	item_path = /obj/item/wheelchair
+
+/datum/loadout_item/inhand/sex_sign
+	name = "sex holosign projector"
+	item_path = /obj/item/holosign_creator/sex

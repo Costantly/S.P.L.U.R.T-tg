@@ -85,14 +85,10 @@
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
-		if(overslot && istype(overslot, /obj/item/clothing))
-			// Bubber Edit Start - Don't require clothing to be flagged for overslotting
-			// var/obj/item/clothing/clothing = overslot
-			// if(clothing.clothing_flags & CLOTHING_MOD_OVERSLOTTING)
+		if(istype(overslot)) // BUBBER EDIT - check for /obj/item, not /obj/item/clothing - ORIGINAL: if(istype(overslot, /obj/item/clothing))
 			part_datum.overslotting = overslot
 			wearer.transferItemToLoc(overslot, part, force = TRUE)
 			RegisterSignal(part, COMSIG_ATOM_EXITED, PROC_REF(on_overslot_exit))
-			// Bubber Edit End - Don't require clothing to be flagged for overslotting
 	if(wearer.equip_to_slot_if_possible(part, part.slot_flags, qdel_on_fail = FALSE, disable_warning = TRUE))
 		ADD_TRAIT(part, TRAIT_NODROP, MOD_TRAIT)
 		wearer.update_clothing(slot_flags|part.slot_flags)
@@ -275,7 +271,7 @@
 		part.alternate_worn_layer = part_datum.unsealed_layer
 	update_speed()
 	wearer.update_clothing(part.slot_flags | slot_flags)
-	wearer.update_obscured_slots(part.visor_flags_inv)
+	wearer.refresh_obscured()
 	if((part.clothing_flags & (MASKINTERNALS|HEADINTERNALS)) && wearer.invalid_internals())
 		wearer.cutoff_internals()
 	SEND_SIGNAL(src, COMSIG_MOD_PART_SEALED, part_datum)

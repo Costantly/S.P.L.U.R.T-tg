@@ -9,6 +9,7 @@
 */
 
 /obj/item/restraints
+	abstract_type = /obj/item/restraints
 	breakouttime = 1 MINUTES
 	dye_color = DYE_PRISONER
 	icon = 'icons/obj/weapons/restraints.dmi'
@@ -158,6 +159,7 @@
 		cuffs = new type()
 
 	target.equip_to_slot(cuffs, ITEM_SLOT_HANDCUFFED)
+	SEND_SIGNAL(target, COMSIG_MOB_HANDCUFFED) //BUBBER EDIT ADDITION
 
 	if(trashtype && !dispense)
 		qdel(src)

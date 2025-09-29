@@ -29,6 +29,8 @@
 	if(!referenced_bodypart)
 		return ..()
 	referenced_bodypart.remove_bodypart_overlay(src)
+	if(!isnull(usr))
+		SEND_SIGNAL(usr, COMSIG_EMOTE_OVERLAY_EXPIRE) //BUBBER EDIT ADDITION - Used for lewd portals, blush expiring breaks it
 	return ..()
 
 /**
@@ -46,6 +48,13 @@
 		return null
 	bodypart.add_bodypart_overlay(overlay)
 	return overlay
+
+/datum/bodypart_overlay/simple/emote/tongue
+	icon_state = "tongue"
+	draw_color = COLOR_TONGUE_PINK
+	layers = EXTERNAL_ADJACENT
+	offset_key = OFFSET_FACE
+	attached_body_zone = BODY_ZONE_HEAD
 
 /datum/bodypart_overlay/simple/emote/blush
 	icon_state = "blush"
