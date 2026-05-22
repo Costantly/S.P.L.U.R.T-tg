@@ -2,7 +2,7 @@
 
 #define PULL_OVERSIZED_SLOWDOWN 2
 
-#define HUMAN_MAXHEALTH MAX_LIVING_HEALTH + 20 //Splurt Edit
+#define HUMAN_MAXHEALTH MAX_LIVING_HEALTH // 100 HP revert from 120 HP
 
 #define UNDERWEAR_HIDE_SOCKS (1<<0)
 #define UNDERWEAR_HIDE_SHIRT (1<<1)
@@ -41,3 +41,5 @@
 #define	AI_HOLOGRAM_BEE "Bee"
 #define	AI_HOLOGRAM_REDPANDA "Red Panda"
 #define	AI_HOLOGRAM_FENNEC "Fennec"
+
+#define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi'

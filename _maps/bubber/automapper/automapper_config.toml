@@ -113,7 +113,7 @@ trait_name = "Station"
 map_files = ["catwalk_cryo.dmm"]
 directory = "_maps/bubber/automapper/templates/CatwalkStation/"
 required_map = "CatwalkStation_2023.dmm"
-coordinates = [142, 152, 1]
+coordinates = [141, 152, 1]
 trait_name = "Station"
 
 # Catwalk ERT Bay
@@ -145,7 +145,7 @@ trait_name = "Station"
 map_files = ["catwalk_supermatter.dmm"]
 directory = "_maps/bubber/automapper/templates/CatwalkStation/"
 required_map = "CatwalkStation_2023.dmm"
-coordinates = [171, 163, 1]
+coordinates = [172, 163, 1]
 trait_name = "Station"
 
 # CENTRAL COMMAND MAP EDITS
@@ -163,14 +163,6 @@ map_files = ["centcom_shuttle_dock.dmm"]
 directory = "_maps/bubber/automapper/templates/centcom/"
 required_map = "CentCom_skyrat_z2.dmm"
 coordinates = [51, 167, 2]
-trait_name = "CentCom"
-
-# Interlink Admin Office
-[templates.interlink_adminoffice]
-map_files = ["interlink_adminoffice.dmm"]
-directory = "_maps/bubber/automapper/templates/centcom/"
-required_map = "CentCom_skyrat_z2.dmm"
-coordinates = [72, 183, 2]
 trait_name = "CentCom"
 
 # DELTASTATION MAP EDITS
@@ -377,6 +369,14 @@ required_map = "Lavaland.dmm"
 coordinates = [107, 49, 1]
 trait_name = "Mining"
 
+#Lavaland Smithy
+[templates.lavaland_smithy]
+map_files = ["lavaland_smithy.dmm"]
+directory = "_maps/bubber/automapper/templates/lavaland/"
+required_map = "Lavaland.dmm"
+coordinates = [143, 38, 1]
+trait_name = "Mining"
+
 # METASTATION MAP EDITS
 # Metastation Armory
 [templates.metastation_armory]
@@ -514,22 +514,6 @@ map_files = ["nebulastation_cryo.dmm"]
 directory = "_maps/bubber/automapper/templates/NebulaStation/"
 required_map = "NebulaStation.dmm"
 coordinates = [90, 132, 1]
-trait_name = "Station"
-
-# Nebulastation Library East
-[templates.nebulastation_library_e]
-map_files = ["nebulastation_library_e.dmm"]
-directory = "_maps/bubber/automapper/templates/NebulaStation/"
-required_map = "NebulaStation.dmm"
-coordinates = [105, 133, 2]
-trait_name = "Station"
-
-# Nebulastation Library West
-[templates.nebulastation_library_w]
-map_files = ["nebulastation_library_w.dmm"]
-directory = "_maps/bubber/automapper/templates/NebulaStation/"
-required_map = "NebulaStation.dmm"
-coordinates = [91, 133, 2]
 trait_name = "Station"
 
 # Nebulastation NTR Office
@@ -701,153 +685,4 @@ map_files = ["wawastation_supermatter.dmm"]
 directory = "_maps/bubber/automapper/templates/wawastation/"
 required_map = "wawastation.dmm"
 coordinates = [162, 63, 1]
-trait_name = "Station"
-
-#SPLURT EDITS -------------------------------
-# ADD ALL SPLURT EDITS BENEATH THIS!
-
-# TEMPORARY INFINIDORM LOCATIONS
-
-# Biodome Infinidorm
-[templates.biodome_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "biodome.dmm"
-coordinates = [55, 135, 2]
-trait_name = "Station"
-
-# Metastation Infinidorm
-[templates.metastation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "MetaStation.dmm"
-coordinates = [53, 128, 1]
-trait_name = "Station"
-
-# Deltastation Infinidorm
-[templates.deltastation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "DeltaStation2.dmm"
-coordinates = [134, 188, 1]
-trait_name = "Station"
-
-# Boxstation Infinidorm
-[templates.boxstation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "BoxStation.dmm"
-coordinates = [48, 130, 1]
-trait_name = "Station"
-
-# Kilostation Infinidorm
-[templates.kilostation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "KiloStation.dmm"
-coordinates = [162, 93, 1]
-trait_name = "Station"
-
-# Limastation Infinidorm (archived station)
-[templates.limastation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "LimaStation.dmm"
-coordinates = [124, 161, 2]
-trait_name = "Station"
-
-# Moonstation Infinidorm
-[templates.moonstation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "moonstation.dmm"
-coordinates = [12, 140, 3]
-trait_name = "Station"
-
-# Iceboxstation Infinidorm
-[templates.iceboxstation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "IceBoxStation.dmm"
-coordinates = [50, 141, 3]
-trait_name = "Station"
-
-# Tramstation Infinidorm
-[templates.tramstation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "tramstation.dmm"
-coordinates = [50, 116, 2]
-trait_name = "Station"
-
-# Wawastation Infinidorm
-[templates.wawastation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "wawastation.dmm"
-coordinates = [83, 78, 1]
-trait_name = "Station"
-
-# Nebulastation Infinidorm
-[templates.nebulastation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "NebulaStation.dmm"
-coordinates = [130, 135, 2]
-trait_name = "Station"
-
-# Birdshotstation Infinidorm
-[templates.birdshotstation_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "birdshot.dmm"
-coordinates = [136, 85, 1]
-trait_name = "Station"
-
-# BlueShift Infinidorm (archived station)
-[templates.blueshift_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "Blueshift.dmm"
-coordinates = [172, 89, 1]
-trait_name = "Station"
-
-# VoidRaptor Infinidorm
-[templates.voidraptor_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "VoidRaptor.dmm"
-coordinates = [79, 145, 1]
-trait_name = "Station"
-
-# Interlink Infinidorm (might be redundant aka one here one on station)
-[templates.interlink_infinidorm]
-map_files = ["infinidorm.dmm"]
-directory = "_maps/splurt/automapper/templates/"
-required_map = "CentCom_skyrat_z2.dmm"
-coordinates = [48, 213, 2]
-trait_name = "CentCom"
-
-# # Lavaland NE Ashwalker Fortress # Added in upstream
-# [templates.lavaland_ashwalker_fortress]
-# map_files = ["lavaland_ashwalker_fortress.dmm"]
-# directory = "_maps/splurt/automapper/templates/mining/"
-# required_map = "Lavaland.dmm"
-# coordinates = [203, 223, 1]
-# trait_name = "Mining"
-
-# # Ashwalkers Slaves
-[templates.lavaland_ashwalker_slaves]
-map_files = ["lavaland_ashwalker_slaves.dmm"]
-directory = "_maps/splurt/automapper/templates/mining/"
-required_map = "Lavaland.dmm"
-coordinates = [224, 244, 1]
-trait_name = "Mining"
-
-# Metastation Xenobio Entrance Disposal Fix
-[templates.metastation_disposal_fix]
-map_files = ["metastation_disposal_fix.dmm"]
-directory = "_maps/splurt/automapper/templates/metastation/"
-required_map = "MetaStation.dmm"
-coordinates = [145, 91, 1]
 trait_name = "Station"

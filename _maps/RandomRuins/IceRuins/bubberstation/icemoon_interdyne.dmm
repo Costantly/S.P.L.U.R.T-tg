@@ -2242,9 +2242,9 @@
 	},
 /obj/item/vending_refill/wardrobe/syndie_wardrobe,
 /obj/item/binoculars,
-/obj/item/computer_disk/syndicate/camera_app,
-/obj/item/computer_disk/syndicate/camera_app,
-/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/disk/computer/syndicate/camera_app,
+/obj/item/disk/computer/syndicate/camera_app,
+/obj/item/disk/computer/syndicate/camera_app,
 /obj/machinery/airalarm/directional/east{
 	req_access = list("syndicate")
 	},
@@ -3886,7 +3886,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/syndicate_lava_base/main";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;
@@ -5651,7 +5650,6 @@
 	ailock = 1;
 	control_area = "/area/ruin/syndicate_lava_base/main";
 	dir = 1;
-	icon_state = "control_kill";
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;

@@ -29,6 +29,9 @@
 		"custom_genital_fluids_pref" = /datum/preference/toggle/erp/custom_genital_fluids,
 		"cumflation_pref" = /datum/preference/toggle/erp/cumflation,
 		"cumflates_partners_pref" = /datum/preference/toggle/erp/cumflates_partners,
+		"knotting_pref" = /datum/preference/toggle/erp/knotting,
+		"knots_partners_pref" = /datum/preference/toggle/erp/knots_partners,
+		"smothering_pref" = /datum/preference/toggle/erp/smothering,
 		"favorite_interactions" = /datum/preference/blob/favorite_interactions, // Not a toggle but it shouldn't cause any issues
 		// Vore prefs
 		"vore_enable_pref" = /datum/preference/toggle/erp/vore_enable,
@@ -120,16 +123,16 @@
 	var/datum/component/interactable/user_interaction_component = user.GetComponent(/datum/component/interactable)
 
 	// Character info - Reoriented to show from user's perspective
-	.["isTargetSelf"] = (user == self)
+	//.["isTargetSelf"] = (user == self) //sent upstream
 	.["interactingWith"] = user == self ? "Interacting with yourself..." : "Interacting with \the [self]..."
 
 	// Primary attributes (user's stats)
 	if(user)
-		.["pleasure"] = user.pleasure || 0
+		//.["pleasure"] = user.pleasure || 0 //sent upstream
 		.["maxPleasure"] = AROUSAL_LIMIT * (ishuman(user) && human_user.dna.features["lust_tolerance"] ? human_user.dna.features["lust_tolerance"] : 1)
-		.["arousal"] = user.arousal || 0
+		//.["arousal"] = user.arousal || 0 //sent upstream
 		.["maxArousal"] = AROUSAL_LIMIT
-		.["pain"] = user.pain || 0
+		//.["pain"] = user.pain || 0 //sent upstream
 		.["maxPain"] = AROUSAL_LIMIT
 		.["selfAttributes"] = get_interaction_attributes(user)
 	else
@@ -144,11 +147,11 @@
 	// Target attributes (self's stats) only if not self-targeting
 	if(user != self)
 		.["theirAttributes"] = get_interaction_attributes(self)
-		.["theirPleasure"] = self.pleasure || 0
+		//.["theirPleasure"] = self.pleasure || 0 //sent upstream
 		.["theirMaxPleasure"] = AROUSAL_LIMIT * (ishuman(self) && human_self.dna.features["lust_tolerance"] ? human_self.dna.features["lust_tolerance"] : 1)
-		.["theirArousal"] = self.arousal || 0
+		//.["theirArousal"] = self.arousal || 0 //sent upstream
 		.["theirMaxArousal"] = AROUSAL_LIMIT
-		.["theirPain"] = self.pain || 0
+		//.["theirPain"] = self.pain || 0 //sent upstream
 		.["theirMaxPain"] = AROUSAL_LIMIT
 	else
 		.["theirAttributes"] = list()
@@ -175,14 +178,19 @@
 	// Genital data - Only if user is human
 	var/list/genital_list = list()
 	if(ishuman(user))
+		var/lock_mode = GLOB.mkultra_arousal_locks[human_user]
+		var/penis_arousal_locked = (lock_mode == "hard" || lock_mode == "limp")
 		for(var/obj/item/organ/genital/genital in human_user.organs)
 			if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
+				var/can_arouse = (genital.aroused != AROUSAL_CANT)
+				if(genital.slot == ORGAN_SLOT_PENIS && penis_arousal_locked)
+					can_arouse = FALSE
 				var/list/genital_data = list(
 					"name" = genital.name,
 					"slot" = genital.slot,
 					"visibility" = genital.visibility_preference,
 					"aroused" = genital.aroused,
-					"can_arouse" = (genital.aroused != AROUSAL_CANT),
+					"can_arouse" = can_arouse,
 					"always_accessible" = genital.always_accessible
 				)
 				genital_list += list(genital_data)
@@ -244,21 +252,22 @@
 	if(target.get_bodypart(BODY_ZONE_L_ARM) || target.get_bodypart(BODY_ZONE_R_ARM))
 		attributes += "have hands"
 	if(target.get_bodypart(BODY_ZONE_HEAD) || (!iscarbon(target) && target.simulated_interaction_requirements[INTERACTION_REQUIRE_SELF_MOUTH]))
-		attributes += "have a mouth, which is [!target.is_mouth_covered() ? "covered" : "uncovered"]"
+		attributes += "have a mouth, which is [target.is_mouth_covered() ? "covered" : "uncovered"]"
 
 	// Sexual exhaustion
-	if(!COOLDOWN_FINISHED(target, refractory_period))
+	if(target.refractory_period > REALTIMEOFDAY) // fix - was ticks since server start vs ticks since midnight
 		attributes += "are sexually exhausted for the time being"
 
 	// Intent
-	switch(target.combat_mode)
-		if(INTENT_HELP)
+	var/intent_name = resolve_intent_name(target)
+	switch(intent_name)
+		if("help")
 			attributes += "are acting gentle"
-		if(INTENT_DISARM)
+		if("disarm")
 			attributes += "are acting playful"
-		if(INTENT_GRAB)
+		if("grab")
 			attributes += "are acting rough"
-		if(INTENT_HARM)
+		if("harm")
 			attributes += "are fighting anyone who comes near"
 
 	// Clothing state

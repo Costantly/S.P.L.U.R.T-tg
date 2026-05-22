@@ -1,9 +1,9 @@
 import {
   CheckboxInput,
-  Feature,
-  FeatureChoiced,
+  type Feature,
+  type FeatureChoiced,
   FeatureNumberInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
@@ -38,6 +38,12 @@ export const pregnancy_belly_inflation: FeatureToggle = {
   name: 'Pregnancy: Belly inflation',
   description:
     'When toggled, pregnancy will make your characters belly increase in size.',
+  component: CheckboxInput,
+};
+
+export const pregnancy_nausea: FeatureToggle = {
+  name: 'Pregnancy: Nausea',
+  description: 'When toggled, pregnancy will make your character nauseous.',
   component: CheckboxInput,
 };
 

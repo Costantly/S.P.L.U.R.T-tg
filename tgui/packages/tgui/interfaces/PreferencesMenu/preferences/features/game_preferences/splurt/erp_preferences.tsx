@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const butt_enlargement_pref: FeatureToggle = {
   name: 'Butt enlargement',
@@ -51,5 +51,27 @@ export const cumflation_pref: FeatureToggle = {
   name: 'Cumflation',
   category: 'ERP',
   description: 'Allow your genitals to get cumflated.',
+  component: CheckboxInput,
+};
+
+export const knotting_pref: FeatureToggle = {
+  name: 'Knotting',
+  category: 'ERP',
+  description: 'Allow interactions to knot.',
+  component: CheckboxInput,
+};
+
+export const stomp_on_pref: FeatureToggle = {
+  name: 'Stomping',
+  category: 'ERP',
+  description:
+    'Allows your character to get stomped on. (Characters below 50% size have this enabled by default)',
+  component: CheckboxInput,
+};
+
+export const smothering_pref: FeatureToggle = {
+  name: 'Smothering',
+  category: 'ERP',
+  description: 'Allow smothering interactions.',
   component: CheckboxInput,
 };

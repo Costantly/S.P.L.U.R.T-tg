@@ -126,6 +126,8 @@ DEFINE_BITFIELD(no_equip_flags, list(
 /// If this has our taur variant, do we hide our taur part?
 #define HIDETAUR (1<<20)
 //SKYRAT EDIT ADDITION END
+/// BUBBER ADDITION - hides frills
+#define HIDEFRILLS (1<<21)
 //Bitflags for hair appendage zones
 #define HAIR_APPENDAGE_FRONT (1<<0)
 #define HAIR_APPENDAGE_LEFT (1<<1)
@@ -190,14 +192,13 @@ DEFINE_BITFIELD(no_equip_flags, list(
 #define DIGITIGRADE_STYLE 2
 
 //Flags (actual flags, fucker ^) for /obj/item/var/supports_variations_flags
-/// No alternative sprites or handling based on bodytype
-#define CLOTHING_NO_VARIATION (1<<0)
 /// Has a sprite for digitigrade legs specifically.
-#define CLOTHING_DIGITIGRADE_VARIATION (1<<1)
+#define CLOTHING_DIGITIGRADE_VARIATION (1<<0)
 /// The sprite works fine for digitigrade legs as-is.
-#define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
+#define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<1)
 /// Auto-generates the leg portion of the sprite with GAGS
-#define CLOTHING_DIGITIGRADE_MASK (1<<3)
+#define CLOTHING_DIGITIGRADE_MASK (1<<2)
+
 // SKYRAT EDIT ADDITION START
 /// The sprite works fine for snouts.
 #define CLOTHING_SNOUTED_VARIATION (1<<4)
@@ -256,7 +257,7 @@ GLOBAL_LIST_INIT(any_suit_storage, typecacheof(list(
 	/obj/item/radio,
 	/obj/item/storage/bag/books,
 	/obj/item/storage/fancy/cigarettes,
-	/obj/item/tank/jetpack/oxygen/captain,
+	/obj/item/tank/jetpack/captain,
 	/obj/item/stack/spacecash,
 	/obj/item/storage/wallet,
 	/obj/item/folder,
@@ -264,7 +265,8 @@ GLOBAL_LIST_INIT(any_suit_storage, typecacheof(list(
 	/obj/item/cigarette,
 	/obj/item/gun/energy/laser/bluetag,
 	/obj/item/gun/energy/laser/redtag,
-	/obj/item/storage/belt/holster
+	/obj/item/storage/belt/holster,
+	/obj/item/storage/belt/sheath
 )))
 
 //Allowed equipment lists for security vests.

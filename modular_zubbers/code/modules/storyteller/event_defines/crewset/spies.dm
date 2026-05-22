@@ -4,7 +4,8 @@
 
 	antag_flag = ROLE_SPY
 	antag_datum = /datum/antagonist/spy
-	weight = 8
+	weight = 6
+	min_players = 8
 	maximum_antags_global = 4
 
 	tags = list(TAG_CREW_ANTAG)
@@ -12,3 +13,10 @@
 /datum/round_event_control/antagonist/solo/spy/midround
 	name = "Spies (Midround)"
 	roundstart = FALSE
+
+/datum/round_event_control/antagonist/solo/spy/event
+	name = "Event Generated Spy"
+	roundstart = FALSE
+	tags = list(TAG_ANTAG_REROLL)
+	max_occurrences = 0
+	maximum_antags = 1

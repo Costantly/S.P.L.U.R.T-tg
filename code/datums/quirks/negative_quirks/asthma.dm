@@ -1,6 +1,6 @@
 /datum/quirk/item_quirk/asthma
 	name = "Asthma"
-	desc = "You suffer from asthma, a inflammatory disorder that causes your airpipe to squeeze shut! Be careful around smoke!"
+	desc = "You suffer from asthma, an inflammatory disorder that causes your airpipe to squeeze shut! Be careful around smoke!"
 	icon = FA_ICON_LUNGS_VIRUS
 	value = -4 // trivialized by NOBREATH but still quite dangerous
 	gain_text = span_danger("You have a harder time breathing.")
@@ -8,6 +8,7 @@
 	medical_record_text = "Patient suffers from asthma."
 	hardcore_value = 2
 	quirk_flags = QUIRK_HUMAN_ONLY
+	species_blacklist = list(SPECIES_SYNTH, SPECIES_PROTEAN) //Splurt Edit
 	mail_goodies = list(/obj/item/reagent_containers/inhaler_canister/albuterol)
 
 	/// At this percentage of inflammation, our lung pressure mult reaches 0. From 0-1.
@@ -60,17 +61,18 @@
 		/datum/disease/asthma_attack/critical = 1, // this can quickly kill you, so its rarity is justified
 	)
 
-/datum/quirk/item_quirk/asthma/add_unique(client/client_source)
-	. = ..()
-
-	var/obj/item/inhaler/albuterol/asthma/rescue_inhaler = new(get_turf(quirk_holder))
-	give_item_to_holder(rescue_inhaler, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "You can use this to quickly relieve the symptoms of your asthma.")
-
+/datum/quirk/item_quirk/asthma/add(client/client_source)
 	RegisterSignal(quirk_holder, COMSIG_CARBON_EXPOSED_TO_SMOKE, PROC_REF(holder_exposed_to_smoke))
 	RegisterSignal(quirk_holder, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(organ_removed))
 	RegisterSignal(quirk_holder, COMSIG_ATOM_EXPOSE_REAGENTS, PROC_REF(exposed_to_reagents))
 	RegisterSignal(quirk_holder, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(on_full_heal))
 	RegisterSignal(quirk_holder, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+
+/datum/quirk/item_quirk/asthma/add_unique(client/client_source)
+	. = ..()
+
+	var/obj/item/inhaler/albuterol/asthma/rescue_inhaler = new(get_turf(quirk_holder))
+	give_item_to_holder(rescue_inhaler, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "You can use this to quickly relieve the symptoms of your asthma.")
 
 	COOLDOWN_START(src, next_attack_cooldown, time_first_attack_can_happen)
 
@@ -80,7 +82,7 @@
 	current_attack?.cure()
 	UnregisterSignal(quirk_holder, COMSIG_CARBON_EXPOSED_TO_SMOKE, COMSIG_CARBON_LOSE_ORGAN, COMSIG_ATOM_EXPOSE_REAGENTS, COMSIG_LIVING_POST_FULLY_HEAL, COMSIG_LIVING_LIFE)
 
-/datum/quirk/item_quirk/asthma/proc/on_life(mob/living/source, seconds_per_tick, times_fired)
+/datum/quirk/item_quirk/asthma/proc/on_life(mob/living/source, seconds_per_tick)
 	SIGNAL_HANDLER
 
 	if (quirk_holder.stat == DEAD)

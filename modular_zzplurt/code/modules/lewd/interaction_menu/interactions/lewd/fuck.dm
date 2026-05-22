@@ -12,8 +12,16 @@
 		"goes balls deep into %TARGET%'s pussy over and over again."
 	)
 	sound_possible = list(
-		'modular_zzplurt/sound/interactions/champ1.ogg',
-		'modular_zzplurt/sound/interactions/champ2.ogg'
+		'modular_zzplurt/sound/interactions/WetPlap01.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap02.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap03.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap04.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap05.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap06.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap07.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap08.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap09.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap10.ogg'
 	)
 	sound_range = 1
 	sound_use = TRUE
@@ -35,9 +43,11 @@
 		"goes balls deep into %TARGET%'s ass over and over again."
 	)
 	sound_possible = list(
-		'modular_zzplurt/sound/interactions/bang1.ogg',
-		'modular_zzplurt/sound/interactions/bang2.ogg',
-		'modular_zzplurt/sound/interactions/bang3.ogg'
+		'modular_zzplurt/sound/interactions/DryFlopQuick1.ogg',
+		'modular_zzplurt/sound/interactions/DryFlopQuick2.ogg',
+		'modular_zzplurt/sound/interactions/DryFlopQuick3.ogg',
+		'modular_zzplurt/sound/interactions/DryFlopQuick4.ogg',
+		'modular_zzplurt/sound/interactions/DryFlopQuick5.ogg'
 	)
 	sound_use = TRUE
 	user_pleasure = 8
@@ -60,9 +70,13 @@
 		"grabs %TARGET%'s breasts together and presses their cock between them."
 	)
 	sound_possible = list(
-		'modular_zzplurt/sound/interactions/bang1.ogg',
-		'modular_zzplurt/sound/interactions/bang2.ogg',
-		'modular_zzplurt/sound/interactions/bang3.ogg'
+		'modular_zzplurt/sound/interactions/DryFlop1.ogg',
+		'modular_zzplurt/sound/interactions/DryFlop2.ogg',
+		'modular_zzplurt/sound/interactions/DryFlop3.ogg',
+		'modular_zzplurt/sound/interactions/DryFlop4.ogg',
+		'modular_zzplurt/sound/interactions/DryFlop5.ogg',
+		'modular_zzplurt/sound/interactions/DryFlop6.ogg',
+		'modular_zzplurt/sound/interactions/DryFlop7.ogg'
 	)
 	sound_range = 1
 	sound_use = TRUE
@@ -79,25 +93,25 @@
 	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_PENIS)
 	cum_message_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"cums all over %TARGET%'s foot.",
-			"shoots their load on %TARGET%'s sole.",
-			"covers %TARGET%'s toes in cum."
+			"%CUMMING% cums all over %CAME_IN%'s foot.",
+			"%CUMMING% shoots their load on %CAME_IN%'s sole.",
+			"%CUMMING% covers %CAME_IN%'s toes in cum."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
 	cum_self_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"you cum all over %TARGET%'s foot.",
-			"you shoot your load on %TARGET%'s sole.",
-			"you cover %TARGET%'s toes in cum."
+			"you cum all over %CAME_IN%'s foot.",
+			"you shoot your load on %CAME_IN%'s sole.",
+			"you cover %CAME_IN%'s toes in cum."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
 	cum_partner_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"%USER% cums all over your foot.",
-			"%USER% shoots their load on your sole.",
-			"%USER% covers your toes in cum."
+			"%CUMMING% cums all over your foot.",
+			"%CUMMING% shoots their load on your sole.",
+			"%CUMMING% covers your toes in cum."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
@@ -125,25 +139,25 @@
 	interaction_requires = list(INTERACTION_REQUIRE_TARGET_FEET)
 	cum_message_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"cums all over %TARGET%'s feet.",
-			"shoots their load on %TARGET%'s soles.",
-			"covers %TARGET%'s toes in cum."
+			"%CUMMING% cums all over %CAME_IN%'s feet.",
+			"%CUMMING% shoots their load on %CAME_IN%'s soles.",
+			"%CUMMING% covers %CAME_IN%'s toes in cum."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
 	cum_self_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"you cum all over %TARGET%'s feet.",
-			"you shoot your load on %TARGET%'s soles.",
-			"you cover %TARGET%'s toes in cum."
+			"you cum all over %CAME_IN%'s feet.",
+			"you shoot your load on %CAME_IN%'s soles.",
+			"you cover %CAME_IN%'s toes in cum."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
 	cum_partner_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"%USER% cums all over your feet.",
-			"%USER% shoots their load on your soles.",
-			"%USER% covers your toes in cum."
+			"%CUMMING% cums all over your feet.",
+			"%CUMMING% shoots their load on your soles.",
+			"%CUMMING% covers your toes in cum."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
@@ -163,25 +177,25 @@
 	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_VAGINA)
 	cum_message_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"squirts all over %TARGET%'s foot.",
-			"orgasms on %TARGET%'s sole.",
-			"coats %TARGET%'s toes with their juices."
+			"%CUMMING% squirts all over %CAME_IN%'s foot.",
+			"%CUMMING% orgasms on %CAME_IN%'s sole.",
+			"%CUMMING% coats %CAME_IN%'s toes with their juices."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
 	cum_self_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"you squirt all over %TARGET%'s foot.",
-			"you orgasm on %TARGET%'s sole.",
-			"you coat %TARGET%'s toes with your juices."
+			"you squirt all over %CAME_IN%'s foot.",
+			"you orgasm on %CAME_IN%'s sole.",
+			"you coat %CAME_IN%'s toes with your juices."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)
 	cum_partner_text_overrides = list(
 		CLIMAX_POSITION_USER = list(
-			"%USER% squirts all over your foot.",
-			"%USER% orgasms on your sole.",
-			"%USER% coats your toes with their juices."
+			"%CUMMING% squirts all over your foot.",
+			"%CUMMING% orgasms on your sole.",
+			"%CUMMING% coats your toes with their juices."
 		),
 		CLIMAX_POSITION_TARGET = list()
 	)

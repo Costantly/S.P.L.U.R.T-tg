@@ -139,6 +139,7 @@
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
 			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
 			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
+			"Character" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form"),
 		),
 		tooltips = TRUE,
 	)
@@ -151,7 +152,8 @@
 			alter_hair(alterer)
 		if("Markings")
 			alter_markings(alterer)
-
+		if("Character")
+			begin_character_alteration(alterer)
 /**
  * Alter colours handles the changing of mutant colours
  * This affects skin tone primarily, though has the option to change hair, markings, and mutant body parts to match
@@ -303,7 +305,7 @@
  * It lets you pick between a few options for DNA specifics
  */
 /datum/action/innate/alter_form/proc/alter_dna(mob/living/carbon/human/alterer)
-	var/list/key_list = list("Body Size", "Genitals", "Mutant Parts")
+	var/list/key_list = list("Body Size", "Gender", "Genitals", "Mutant Parts")
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		key_list.Remove("Genitals")
 	var/dna_alteration = tgui_input_list(
@@ -345,7 +347,34 @@
 			*/
 			alterer.update_size(new_body_size)
 			//SPLURT EDIT CHANGE END
+		// SPLURT EDIT ADD
+		if("Gender")
+			var/new_gender = tgui_input_list(
+				alterer,
+				"What gender do you want?",
+				"Gender Alteration",
+				list(MALE, FEMALE, PLURAL, NEUTER)
+			)
+			if(!new_gender)
+				return
+			alterer.gender = new_gender
 
+			var/chosen_physique = tgui_input_list(
+				alterer,
+				"What physique to go along with it?",
+				"Bodytype Alteration",
+				list(MALE, FEMALE, "Don't change")
+				)
+
+			if(chosen_physique && chosen_physique != "Don't change")
+				alterer.physique = chosen_physique
+
+			// update this shit
+			alterer.dna.update_ui_block(/datum/dna_block/identity/gender)
+			alterer.update_body(is_creating = TRUE)
+			alterer.update_mutations_overlay()
+			alterer.update_clothing(ITEM_SLOT_ICLOTHING)
+		// SPLURT EDIT ADD END
 		if("Genitals")
 			alter_genitals(alterer)
 		if("Mutant Parts")
@@ -415,6 +444,7 @@
 			// using a var here to save some horizontal space
 			var/color = alterer.dna.mutant_bodyparts[chosen_key]?[MUTANT_INDEX_COLOR_LIST] || selected_sprite_accessory.get_default_color(alterer.dna.features, alterer.dna.species)
 			new_acc_list[MUTANT_INDEX_COLOR_LIST] = color
+			alterer.dna.species.mutant_bodyparts[chosen_key] = new_acc_list // SPLURT EDIT ADD. This makes morphed parts actually show up when examined
 			alterer.dna.mutant_bodyparts[chosen_key] = new_acc_list.Copy()
 
 			if(robot_organs)
@@ -460,6 +490,12 @@
 		genital_list += list("Penis Girth", "Penis Length", "Penis Sheath", "Penis Taur Mode")
 	if(alterer.get_organ_slot(ORGAN_SLOT_TESTICLES))
 		genital_list += list("Testicles Size")
+	// SPLURT EDIT ADD
+	if(alterer.get_organ_slot(ORGAN_SLOT_BUTT))
+		genital_list += list("Butt Size")
+	if(alterer.get_organ_slot(ORGAN_SLOT_BELLY))
+		genital_list += list("Belly Size")
+	// SPLURT EDIT ADD END
 	if(!length(genital_list))
 		alterer.balloon_alert(alterer, "no genitals!")
 
@@ -490,7 +526,38 @@
 				return
 			alterer.dna.features["breasts_size"] = melons.breasts_cup_to_size(new_size)
 			melons.set_size(alterer.dna.features["breasts_size"])
-
+		// SPLURT EDIT ADD
+		// OK so why do we need to do this?
+		// GITHUB COMMIT HISTORY ALREADY SHOWS YOU THIS???
+		if("Butt Size")
+			var/obj/item/organ/genital/butt/buttocks = alterer.get_organ_slot(ORGAN_SLOT_BUTT)
+			var/new_size = tgui_input_number(
+				alterer,
+				"Choose your character's butt size:",
+				"DNA Alteration",
+				max_value = 8,
+				min_value = 1,
+				default = 1
+			)
+			if(!new_size)
+				return
+			alterer.dna.features["butt_size"] = new_size
+			buttocks.set_size(alterer.dna.features["butt_size"])
+		if("Belly Size")
+			var/obj/item/organ/genital/belly/melons = alterer.get_organ_slot(ORGAN_SLOT_BELLY)
+			var/new_size = tgui_input_number(
+				alterer,
+				"Choose your character's belly size:",
+				"DNA Alteration",
+				max_value = 10,
+				min_value = 1,
+				default = 1
+			)
+			if(!new_size)
+				return
+			alterer.dna.features["belly_size"] = new_size
+			melons.set_size(alterer.dna.features["belly_size"])
+		// SPLURT EDIT ADD END
 		if("Penis Girth")
 			var/obj/item/organ/genital/penis/sausage = alterer.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/max_girth = PENIS_MAX_GIRTH
@@ -551,6 +618,170 @@
 			if(new_size)
 				alterer.dna.features["balls_size"] = avocados.balls_description_to_size(new_size)
 				avocados.set_size(alterer.dna.features["balls_size"])
+
+/**
+ * The beginning for character alteration. Handles all the settings and targetting. Leads into [do_char_alteration].
+ *
+ * Args:
+ * * mob/living/carbon/human/alterer: The mob doing the transforming.
+ *
+ */
+/datum/action/innate/alter_form/proc/begin_character_alteration(mob/living/carbon/human/alterer)
+	var/list/mob/living/carbon/viable_targets = list()
+
+	to_chat(alterer, span_userdanger("This ability is not meant to be used for mechanical advantage."))
+	to_chat(alterer, span_warning("Your use of character mode will be admin logged! Don't mess about!"))
+
+	for (var/mob/living/carbon/human/iter_carbon in view(alterer))
+		if (!is_valid_char_alteration_target(iter_carbon))
+			continue
+		viable_targets += iter_carbon
+
+	var/mob/living/carbon/target = tgui_input_list(
+		alterer,
+		"Who do you want to transform?",
+		"Visible mobs",
+		viable_targets,
+		alterer,
+		5 SECONDS,
+	)
+	if (isnull(target) || !is_valid_char_alteration_target(target))
+		alterer.balloon_alert(alterer, "invalid selection!")
+		return
+
+	var/mode = tgui_alert(
+		alterer,
+		"Do you want to use your characters, or theirs?",
+		"Character Source",
+		list("Yours", "Theirs", "Cancel"),
+		5 SECONDS,
+		FALSE
+	)
+	var/client/target_client
+	var/mob/target_mob
+	switch (mode)
+		if ("Yours")
+			target_client = alterer.client
+			target_mob = alterer
+		if ("Theirs")
+			target_client = target.client
+			target_mob = target
+		if ("Cancel")
+			return
+
+	if (isnull(target_client) || isnull(target_mob))
+		alterer.balloon_alert(alterer, "invalid selection!")
+		return
+
+	var/list/prefdata_names = target_client.prefs.create_character_profiles()
+	if (isnull(prefdata_names))
+		return
+
+	var/target_char_tgui_title = ((mode == "Theirs") ? "[alterer] wants to transform you... which character?" : "Which character?")
+	var/target_char_name = tgui_input_list(
+		target_mob,
+		target_char_tgui_title,
+		"Character",
+		prefdata_names,
+		timeout = 5 SECONDS
+	)
+	if (isnull(target_char_name))
+		alterer.balloon_alert(alterer, "no selection!")
+		return
+
+	if (!is_valid_char_alteration_target(target))
+		return
+
+	var/allowed = tgui_alert(
+		target,
+		"[alterer.get_visible_name()] wants to transform you into [target_char_name]. Do you consent?",
+		"Transformation",
+		list("No", "Yes"),
+		10 SECONDS,
+		FALSE
+	)
+
+	if (allowed != "Yes")
+		alterer.balloon_alert(alterer, "transformation rejected")
+		return
+
+	var/datum/preferences/prefs = target_client?.prefs
+	if (isnull(prefs))
+		return
+
+	if (!is_valid_char_alteration_target(target))
+		return
+
+	var/old_slot = prefs.savefile.get_entry("default_slot")
+	prefs.load_character(prefdata_names.Find(target_char_name))
+
+	do_char_alteration(alterer, target, prefs)
+
+	prefs.load_character(old_slot)
+
+/**
+ * The second and final step in character alteration. Actually sets the target to the new character.
+ *
+ * Args:
+ * * mob/living/carbon/human/alterer: The mob doing the transforming.
+ * * mob/living/carbon/human/target: The target to be transformed. Must have passed [is_valid_char_alteration_target].
+ * * datum/preferences/char_source: The source of the character. Generally either target's or alterer's preference datum.
+ */
+/datum/action/innate/alter_form/proc/do_char_alteration(mob/living/carbon/human/alterer, mob/living/carbon/human/target, datum/preferences/char_source)
+	target.visible_message(
+		span_warning("[target.get_visible_name()] unnervingly twitches, [target.p_their()] body distorting... until eventually transforming into something new."),
+		span_warning("Your body sears and tears, taking a new form!")
+	)
+	var/original_name = target.dna.real_name
+
+	// Once added this status effect never goes away, and always remembers the !first! original name
+	target.apply_status_effect(/datum/status_effect/shapeshift_transformed, original_name)
+	char_source.safe_transfer_prefs_to_with_damage(target)
+	target.dna.update_dna_identity()
+	SSquirks.OverrideQuirks(target, char_source.parent)
+
+	var/output = "[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(target)]. Original Name: [original_name], New Name: [target.dna.real_name]."
+	message_admins(output)
+	log_game(output)
+
+/datum/status_effect/shapeshift_transformed
+	id = "shapeshift_transformed"
+	alert_type = null
+	var/orig_name
+
+/datum/status_effect/shapeshift_transformed/on_creation(mob/living/new_owner, orig_name)
+	. = ..()
+	if (!.)
+		return
+
+	src.orig_name = orig_name
+
+/datum/status_effect/shapeshift_transformed/get_examine_text()
+	var/mob/living/carbon/human/human_owner = owner
+	if (!istype(owner))
+		return
+	var/curr_name = human_owner.dna.real_name
+	if (curr_name == orig_name)
+		return
+	return span_warning("This character has been transformed via Shapeshift, originally being [orig_name].")
+
+/**
+ * Validates if the target can be transformed.
+ *
+ * Args:
+ * * mob/living/carbon/human/target: The check target.
+ *
+ * Returns:
+ * * FALSE if the target has no client or is dead. TRUE otherwise.
+ */
+/datum/action/innate/alter_form/proc/is_valid_char_alteration_target(mob/living/carbon/target)
+	var/client/client = target.client
+	if (isnull(client))
+		return FALSE
+	if (target.stat == DEAD)
+		return FALSE
+
+	return TRUE
 
 /datum/species/jelly/on_bloodsucker_gain(mob/living/carbon/human/target)
 	humanize_organs(target)

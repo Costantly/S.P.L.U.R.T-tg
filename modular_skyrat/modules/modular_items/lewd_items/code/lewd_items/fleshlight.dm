@@ -82,6 +82,7 @@
 		target.try_lewd_autoemote(pick("twitch_s", "moan", "blush"))
 	target.adjust_arousal(6)
 	target.adjust_pleasure(9)
+	target.plug13_genital_emote(penis, PLUG13_STRENGTH_HIGH, PLUG13_DURATION_SHORT)
 	user.visible_message(span_purple("[user] [message]!"))
 	conditional_pref_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg',
@@ -136,6 +137,7 @@
 		target.try_lewd_autoemote(pick("twitch_s", "moan", "blush"))
 	target.adjust_arousal(6)
 	target.adjust_pleasure(9)
+	target.plug13_genital_emote(penis, PLUG13_STRENGTH_HIGH, PLUG13_DURATION_SHORT) // SPLURT EDIT - Plug13 - Fleshlight
 	user.visible_message(span_purple("[user] [message]!"))
 	conditional_pref_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg',
@@ -144,3 +146,23 @@
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang5.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 70, 1, -1)
 
+
+/obj/item/clothing/sextoy/fleshlight/bluespace
+	name = "bluespace fleshlight"
+	color_changed = TRUE
+	current_color = "teal"
+	desc = "Internal design based on the captain's mother."
+	custom_premium_price = PAYCHECK_COMMAND * 10
+
+/obj/item/clothing/sextoy/fleshlight/bluespace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/effect_remover, \
+		tip_text = "Capture rod", \
+		on_clear_callback = CALLBACK(src, PROC_REF(rod_johnson)), \
+		effects_we_clear = list(/obj/effect/immovablerod)\
+	)
+
+/obj/item/clothing/sextoy/fleshlight/bluespace/proc/rod_johnson(obj/effect/immovablerod/target, mob/living/user)
+	user.throw_at(get_step(user,target.dir),12,4)
+	playsound(target, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 75, TRUE)
+	target.audible_message(span_danger("You hear a POP!"))

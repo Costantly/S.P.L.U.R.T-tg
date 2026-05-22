@@ -7,13 +7,15 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	///A list of currently active station traits
 	var/list/station_traits = list()
 	///Assoc list of trait type || assoc list of traits with weighted value. Used for picking traits from a specific category.
-	var/list/selectable_traits_by_types = list(STATION_TRAIT_POSITIVE = list(), STATION_TRAIT_NEUTRAL = list(), STATION_TRAIT_NEGATIVE = list())
+	var/alist/selectable_traits_by_types = alist(STATION_TRAIT_POSITIVE = list(), STATION_TRAIT_NEUTRAL = list(), STATION_TRAIT_NEGATIVE = list())
 	///Currently active announcer. Starts as a type but gets initialized after traits are selected
 	var/datum/centcom_announcer/announcer = /datum/centcom_announcer/default
 	///A list of trait roles that should be protected from antag
 	var/list/antag_protected_roles = list()
 	///A list of trait roles that should never be able to roll antag
 	var/list/antag_restricted_roles = list()
+	///Dictionary of singletons
+	var/list/announcers = list() // SPLURT EDIT ADD
 
 	/// Assosciative list of station goal type -> goal instance
 	var/list/datum/station_goal/goals_by_type = list()
@@ -26,7 +28,14 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	//display_lobby_traits() SKYRAT EDIT REMOVAL
 	#endif
 
-	announcer = new announcer() //Initialize the station's announcer datum
+	// SPLURT EDIT ADD
+	//Initialize the station's announcer datums as singletons
+	for(var/announcer_type in subtypesof(/datum/centcom_announcer/))
+		var/datum/centcom_announcer/announce = new announcer_type()
+		announcers[announcer_type] = announce
+
+	announcer = announcers[announcer] // Fetch me
+	// SPLURT EDIT END
 	SSparallax.post_station_setup() //Apply station effects that parallax might have
 
 	return SS_INIT_SUCCESS
@@ -94,15 +103,12 @@ PROCESSING_SUBSYSTEM_DEF(station)
 
 		return
 
-	for(var/datum/station_trait/trait_typepath as anything in subtypesof(/datum/station_trait))
+	for(var/datum/station_trait/trait_typepath as anything in valid_subtypesof(/datum/station_trait))
 
 		// If forced, (probably debugging), just set it up now, keep it out of the pool.
 		if(initial(trait_typepath.force))
 			setup_trait(trait_typepath)
 			continue
-
-		if(initial(trait_typepath.abstract_type) == trait_typepath)
-			continue //Dont add abstract ones to it
 
 		if(!(initial(trait_typepath.trait_flags) & STATION_TRAIT_PLANETARY) && SSmapping.is_planetary()) // we're on a planet but we can't do planet ;_;
 			continue

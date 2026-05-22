@@ -2,7 +2,7 @@
 	gender = PLURAL
 	body_parts_covered = GROIN|LEGS
 	female_sprite_flags = NO_FEMALE_UNIFORM
-	can_adjust = FALSE
+	can_adjust = FALSE // BUBBER EDIT CHANGE - ORIGINAL: TRUE
 	custom_price = PAYCHECK_CREW
 	icon = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	worn_icon = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
@@ -20,6 +20,7 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/slacks/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
 	greyscale_colors = "#575757#3E3E3E#75634F"
 	flags_1 = IS_PLAYER_COLORABLE_1
+	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/under/pants/jeans
 	name = "jeans"

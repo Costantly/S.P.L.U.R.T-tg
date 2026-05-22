@@ -112,6 +112,8 @@
 		pregnancy_flags |= PREGNANCY_FLAG_BELLY_INFLATION
 	if(preference_source.prefs.read_preference(/datum/preference/toggle/pregnancy/inert))
 		pregnancy_flags |= PREGNANCY_FLAG_INERT
+	if(preference_source.prefs.read_preference(/datum/preference/toggle/pregnancy/nausea))
+		pregnancy_flags |= PREGNANCY_FLAG_NAUSEA
 
 	pregnancy_duration = preference_source.prefs.read_preference(/datum/preference/numeric/pregnancy/duration) * PREGNANCY_DURATION_MULTIPLIER
 
@@ -145,7 +147,7 @@
 		return
 
 	if(pregnancy_stage >= 5)
-		render_list += conditional_tooltip("<span class='alert ml-1'>Subject is going into labor!</span>", "Patient will suffer from extreme nausea and fatigue until they deliver their baby.", tochat)
+		render_list += conditional_tooltip("<span class='alert ml-1'>Subject is going into labor!</span>", "Patient may suffer from extreme nausea and fatigue until they deliver their baby.", tochat)
 	else if((pregnancy_stage >= 2) || advanced)
 		render_list += conditional_tooltip("<span class='alert ml-1'>Subject is pregnant[advanced ? " (Stage [pregnancy_stage])" : "."]</span>", "Wait until patient goes into labor, or perform an abortion.", tochat)
 	render_list += "<br>"
@@ -155,7 +157,8 @@
 
 	if(iscarbon(source))
 		var/mob/living/carbon/abortos = source
-		abortos.vomit(vomit_flags = MOB_VOMIT_STUN | MOB_VOMIT_HARM | MOB_VOMIT_BLOOD, lost_nutrition = 20)
+		if(pregnancy_flags & PREGNANCY_FLAG_NAUSEA) // This one is debateable
+			abortos.vomit(vomit_flags = MOB_VOMIT_STUN | MOB_VOMIT_HARM | MOB_VOMIT_BLOOD, lost_nutrition = 20)
 		to_chat(abortos, span_userdanger("Your belly shrivels up!"))
 	qdel(src)
 
@@ -172,7 +175,8 @@
 		//big wave of nausea every 40 seconds or so
 		else
 			if(SPT_PROB(1.5, seconds_between_ticks))
-				owner.adjust_disgust(30)
+				if(pregnancy_flags & PREGNANCY_FLAG_NAUSEA)
+					owner.adjust_disgust(30)
 				to_chat(owner, span_warning("Something [pick("squirms", "shakes", "kicks")] inside you."))
 
 	if(pregnancy_stage >= 3)
@@ -184,13 +188,13 @@
 					if(belly.genital_size < 4)
 						belly.set_size(4)
 						to_chat(owner, span_warning("Your [belly] balloons in size as your egg grows."))
-		else if(owner.getStaminaLoss() < 50)
-			owner.adjustStaminaLoss(2.5 * seconds_between_ticks)
+		else if(owner.get_stamina_loss() < 50)
+			owner.adjust_stamina_loss(2.5 * seconds_between_ticks)
 
 	if(pregnancy_stage >= 5)
 		if(previous_stage < 5)
 			owner.add_mood_event("preggers", /datum/mood_event/pregnant_labor)
-			owner.adjustStaminaLoss(rand(50, 100))
+			owner.adjust_stamina_loss(rand(50, 100))
 			owner.emote("scream")
 			to_chat(owner, span_userdanger("Your water broke! You need to lay down and squeeze the egg out!"))
 		else
@@ -201,8 +205,9 @@
 				can_deliver = (!covered || !length(human_momma.get_clothing_on_part(covered)))
 			if((owner.body_position != LYING_DOWN) || !SPT_PROB(5, seconds_between_ticks))
 				//constant nausea
-				owner.adjust_disgust(3 * seconds_between_ticks)
-				if((owner.getStaminaLoss() < 100) && SPT_PROB(5, seconds_between_ticks))
+				if(pregnancy_flags & PREGNANCY_FLAG_NAUSEA)
+					owner.adjust_disgust(3 * seconds_between_ticks)
+				if((owner.get_stamina_loss() < 100) && SPT_PROB(5, seconds_between_ticks))
 					owner.emote("scream")
 					to_chat(owner, "You REALLY need to give birth!")
 			else

@@ -15,6 +15,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_SECURITY = RADIO_CHANNEL_SECURITY,
 	RADIO_KEY_SUPPLY = RADIO_CHANNEL_SUPPLY,
 	RADIO_KEY_SERVICE = RADIO_CHANNEL_SERVICE,
+	RADIO_KEY_IAA = RADIO_CHANNEL_IAA, // SPLURT EDIT
 
 	// Faction
 	RADIO_KEY_SYNDICATE = RADIO_CHANNEL_SYNDICATE,
@@ -52,6 +53,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"ы" = RADIO_CHANNEL_SECURITY,
 	"г" = RADIO_CHANNEL_SUPPLY,
 	"м" = RADIO_CHANNEL_SERVICE,
+	"и" = RADIO_CHANNEL_IAA,
 
 	// Faction
 	"е" = RADIO_CHANNEL_SYNDICATE,
@@ -316,11 +318,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		// But we can still see them speak
 		if(speaker_is_signing)
 			deaf_message = "[span_name("[speaker]")] [speaker.get_default_say_verb()] something, but the motions are too subtle to make out from afar."
-		else if(can_hear()) // If we can't hear we want to continue to the default deaf message
+		else if(!HAS_TRAIT(src, TRAIT_DEAF)) // If we can't hear we want to continue to the default deaf message
 			if(isliving(speaker))
 				var/mob/living/living_speaker = speaker
 				var/mouth_hidden = living_speaker.is_mouth_covered() || HAS_TRAIT(living_speaker, TRAIT_FACE_COVERED)
-				if(!HAS_TRAIT(src, TRAIT_EMPATH) && mouth_hidden) // Can't see them speak if their mouth is covered or hidden, unless we're an empath
+				if(mouth_hidden && !HAS_TRAIT(src, TRAIT_SEE_MASK_WHISPER)) // Can't see them speak if their mouth is covered or hidden, unless we're an empath
 					return FALSE
 
 			deaf_message = "[span_name("[speaker]")] [speaker.verb_whisper] something, but you are too far away to hear [speaker.p_them()]."
@@ -370,7 +372,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		deaf_type = MSG_AUDIBLE // Since you should be able to hear yourself without looking
 
 	// Create map text prior to modifying message for goonchat
-	if (use_runechat && can_hear())
+	if (use_runechat && !HAS_TRAIT(src, TRAIT_DEAF))
 		if (message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
 			create_chat_message(speaker, null, message_mods[MODE_CUSTOM_SAY_EMOTE], spans, EMOTE_MESSAGE)
 		else
@@ -396,6 +398,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	for(var/atom/movable/listening_movable as anything in listening)
 		if(!(listening_movable in in_view) && !HAS_TRAIT(listening_movable, TRAIT_XRAY_HEARING))
 			listening.Remove(listening_movable)
+
+	SEND_SIGNAL(src, COMSIG_LIVING_SEND_SPEECH, listening)
 
 	if(imaginary_group)
 		listening |= imaginary_group

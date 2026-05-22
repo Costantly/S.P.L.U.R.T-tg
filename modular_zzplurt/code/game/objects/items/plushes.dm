@@ -152,10 +152,10 @@
 	name = "Glitchy Protogen Dildo"
 	desc = "A dildo of a glitchy protogen, It's lights appear to flicker once in awhile."
 	icon = 'modular_zzplurt/icons/obj/plushes.dmi'
-	icon_state = "glitchy_protogen"
-	base_icon_state = "glitchy_protogen"
+	icon_state = "glitchy_protogen_dildo"
+	base_icon_state = "glitchy_protogen_dildo"
 	inhand_icon_state = null
-	worn_icon_state = "glitchy_protogen"
+	worn_icon_state = "glitchy_protogen_dildo"
 	change_sprite = FALSE
 
 /obj/item/clothing/sextoy/dildo/glitchy_protogen/Initialize(mapload)
@@ -182,3 +182,45 @@
 	attack_verb_continuous = list("corrupt", "scoff at", "drain", "tempt", "judge")
 	squeak_override = list('modular_zzplurt/sound/voice/male_sigh.ogg' = 1)
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
+
+/obj/item/toy/plush/red_mut
+	name = "\improper Marketable Mutt Plushie"
+	desc = "This plushie looks like someone who's been on station... How the heck did this thing even get made?"
+	icon = 'modular_zzplurt/icons/obj/plushes.dmi'
+	icon_state = "redmut"
+	gender = MALE
+	squeak_override = list('modular_zzplurt/sound/voice/bork.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/bark1.ogg' = 1, 'modular_skyrat/modules/emotes/sound/voice/bark2.ogg' = 1)
+
+/obj/item/toy/plush/fentalynn
+	name = "\improper Yapping Fox Plushie"
+	desc = "With the consequences of Fenlynn deciding to fuck with the <b>Wizard Federation</b> having caught up with her, she has suffered the wrath of Plaucifico the Flaccid, having been polymorphed into a marketable plushie."
+	icon = 'modular_zzplurt/icons/obj/plushes.dmi'
+	icon_state = "fentalynn"
+	attack_verb_simple = list("beat", "bully", "assault", "harass", "abuse", "yap")
+	attack_verb_continuous = list("beats", "bullies", "assaults", "harasses", "abuses", "yaps")
+	squeak_override = list('modular_zzplurt/sound/voice/yap.ogg' = 19, 'modular_skyrat/modules/alerts/sound/security_levels/delta.ogg' = 1)
+
+/obj/item/toy/plush/doctoraddy
+	name = "Doctor Addy Plushie"
+	desc = "The crudely drawn cardboard hospital ID says that she's A Real Doctor™, but holding the plushie doesn't inspire confidence. A velcro pouch on the bottom contains a baggie full of cheese."
+	icon = 'modular_zzplurt/icons/obj/plushes.dmi'
+	icon_state = "doctoraddy"
+	attack_verb_simple = list("perform", "heal", "cheese")
+	attack_verb_continuous = list("performs", "heals", "cheeses")
+	squeak_override = list('modular_zzplurt/sound/voice/yip.ogg' = 19, 'modular_zubbers/sound/alerts/violet.ogg' = 1)
+
+/obj/item/toy/plush/fox_protogen
+	name = "\improper Silly Protogen Plushie"
+	desc = "A silly looking fox protogen made to be extremly squishable with folding tails, the inside being fluffier then the outside, seems to pair wonderfully with the Suspicious Protogen Plushie."
+	icon = 'modular_zzplurt/icons/obj/plushes.dmi'
+	icon_state = "foxproot"
+	gender = FEMALE
+	squeak_override = list('modular_zzplurt/sound/voice/yap.ogg' = 1)
+
+/obj/item/toy/plush/fuckassrabit
+	name = "\improper Wabbit of Gier"
+	desc = "You get the unbridled sense of superiority and vanity from this plushie"
+	icon = 'modular_zzplurt/icons/obj/plushes.dmi'
+	icon_state = "dumbrabbit"
+	gender = MALE
+	squeak_override = list('modular_zzplurt/sound/items/donorplushsound.ogg' = 1)

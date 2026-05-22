@@ -15,7 +15,6 @@
 #define TRAIT_CHOKE_SLUT		"choke_slut"
 /// Trait for quirk: Bloodsucker Fledgling
 #define TRAIT_BLOODFLEDGE		"bloodfledge"
-#define TRAIT_NO_BLOOD_REGEN "no_blood_regen"
 /// UNUSED - Legacy trait for quirk: Incubus
 #define TRAIT_INCUBUS			"incubus"
 /// UNUSED - Legacy trait for quirk: Succubus
@@ -74,14 +73,27 @@
 #define TRAIT_CONCUBUS			"concubus"
 /// Trait for quirk: Modular Limbs
 #define TRAIT_MODULAR_LIMBS		"modular_limbs"
+/// Trait for quirk: Vacuum Resistance
+#define TRAIT_VACUUM_RESIST		"vacuum_resist"
 /// Trait for quirk: Overweight
 #define TRAIT_OVERWEIGHT		"overweight"
 /// Trait for quirk: Trashcan
 #define TRAIT_TRASHCAN			"trashcan"
 /// Trait for quirk: Quick Step
 #define TRAIT_SPEEDY_STEP		"speedy_step"
-/// Trait applied when the pressure resistance of the vacuum resistance quirk wears off
+/* /// Trait applied when the pressure resistance of the vacuum resistance quirk wears off (Reverted for now due to rules preventing this from being abused)
 #define TRAIT_VACUUM_RESISTANCE_FATIGUE "vacuum_resist_fatigue"
+*/
+/// Trait for quirk: Hypersexual
+#define TRAIT_HYPERSEXUAL		"hypersexual"
+
+///
+// Mob Traits
+///
+/// Stops blood from regenerating naturally
+#define TRAIT_NO_BLOOD_REGEN 		"no_blood_regen"
+/// Caused by bloodfledge craving effect
+#define TRAIT_BLOODFLEDGE_DESPERATE "bloodfledge_desperate"
 
 ///
 // Element traits

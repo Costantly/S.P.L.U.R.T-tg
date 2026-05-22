@@ -8,7 +8,7 @@
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
 	equip_sound = 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg'
-	worn_icon_taur_paw = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
+	worn_icon_taur_big = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform-paw.dmi'
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
@@ -37,7 +37,14 @@
 
 		affected_mob.update_worn_undersuit()
 
-	breasts_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi', "none")
+		breasts_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi', "none")
+		//SPLURT ADDITION START
+		var/taur_mode = affected_human.get_taur_mode()
+		if(taur_mode & STYLE_TAUR_ALL)
+			breasts_overlay.pixel_w = 16 // align breasts overlay with taur shift in build_worn_icon
+		else
+			breasts_overlay.pixel_w = 0
+		//SPLURT ADDITION END
 
 	//Breasts overlay for catsuit
 	if(affected_breasts && affected_breasts.genital_size >= 6)
@@ -66,8 +73,14 @@
 	. = ..()
 	accessory_overlay = null
 	breasts_overlay.icon_state = "none"
+	//SPLURT ADDITION START
+	breasts_overlay.pixel_w = 0
+	//SPLURT ADDITION END
 	cut_overlay(breasts_icon_overlay)
 	breasts_icon_overlay.icon_state = "none"
+	//SPLURT ADDITION START
+	breasts_icon_overlay.pixel_w = 0
+	//SPLURT ADDITION END
 
 //Plug to bypass the bug with instant suit equip/drop
 /obj/item/clothing/under/misc/latex_halfcatsuit/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)

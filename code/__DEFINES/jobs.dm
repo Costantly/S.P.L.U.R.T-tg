@@ -59,6 +59,7 @@
 //Silicon
 #define JOB_AI "AI"
 #define JOB_CYBORG "Cyborg"
+#define JOB_SECURITY_CYBORG "Security Cyborg" //SPLURT ADDITION
 #define JOB_PERSONAL_AI "Personal AI"
 #define JOB_HUMAN_AI "Big Brother"
 //Security
@@ -145,8 +146,9 @@
 // Off-Station
 #define JOB_SPACE_POLICE "Space Police"
 #define JOB_TERRAGOV "TerraGov"
-#define JOB_TERRAGOV_LIASON "TerraGov Liason"
+#define JOB_TERRAGOV_LIASON "TerraGov Liaison"
 // SKYRAT EDIT ADDITION END
+#define JOB_NT_TRN "Nanotrasen Crew Trainer" //Splurt Addition
 
 //Lost crew
 #define JOB_LOSTCREW_ENGINEER "Visiting Engineer"
@@ -181,6 +183,7 @@
 #define JOB_DISPLAY_ORDER_PUN_PUN 15
 #define JOB_DISPLAY_ORDER_AI 16
 #define JOB_DISPLAY_ORDER_CYBORG 17
+#define JOB_DISPLAY_ORDER_SECURITY_CYBORG 41 //SPLURT ADDITION
 #define JOB_DISPLAY_ORDER_CHIEF_ENGINEER 18
 #define JOB_DISPLAY_ORDER_STATION_ENGINEER 19
 #define JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN 20
@@ -215,6 +218,7 @@
 #define JOB_DISPLAY_ORDER_CUSTOMS_AGENT 53 //SKYRAT EDIT ADDITION
 #define JOB_DISPLAY_ORDER_EXP_CORPS 60 //SKYRAT EDIT ADDITON
 #define JOB_DISPLAY_ORDER_TELECOMMS_SPECIALIST 61 //SKYRAT EDIT ADDITION
+#define JOB_DISPLAY_ORDER_NANOTRASEN_CREW_TRAINER 62 // SPLURT EDIT
 
 #define DEPARTMENT_UNASSIGNED "No Department"
 
@@ -238,11 +242,14 @@
 #define DEPARTMENT_ASSISTANT "Assistant"
 #define DEPARTMENT_BITFLAG_CAPTAIN (1<<9)
 #define DEPARTMENT_CAPTAIN "Captain"
-#define DEPARTMENT_BITFLAG_CENTRAL_COMMAND (1<<10) //SKYRAT EDIT CHANGE
+#define DEPARTMENT_BITFLAG_INTERNAL (1<<10) //SPLURT EDIT
+#define DEPARTMENT_INTERNAL "Internal Affairs" //SPLURT EDIT
+#define DEPARTMENT_BITFLAG_CENTRAL_COMMAND (1<<11) //SKYRAT EDIT CHANGE
 #define DEPARTMENT_CENTRAL_COMMAND "Central Command" //SKYRAT EDIT CHANGE
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"SECURITY" = DEPARTMENT_BITFLAG_SECURITY,
+	"INTERNAL AFFAIRS" = DEPARTMENT_BITFLAG_INTERNAL, // SPLURT EDIT
 	"COMMAND" = DEPARTMENT_BITFLAG_COMMAND,
 	"SERVICE" = DEPARTMENT_BITFLAG_SERVICE,
 	"CARGO" = DEPARTMENT_BITFLAG_CARGO,
@@ -320,8 +327,11 @@ DEFINE_BITFIELD(job_flags, list(
 #define SUPERVISOR_HOS "the Head of Security"
 #define SUPERVISOR_QM "the Quartermaster"
 #define SUPERVISOR_RD "the Research Director"
+#define SUPERVISOR_NTC "the Nanotrasen Consultant" // SPLURT ADDITION
 
 /// Mind traits that should be shared by every head of staff. has to be this way cause byond lists lol
 #define HEAD_OF_STAFF_MIND_TRAITS TRAIT_FAST_TYING, TRAIT_HIGH_VALUE_RANSOM
-#define MEDICAL_MIND_TRAITS TRAIT_DESENSITIZED
-#define SECURITY_MIND_TRAITS TRAIT_DESENSITIZED
+
+/// Statistically average probability of a random cop or cop-adjacent person consisting of meat of sus domesticus of suidae family,
+/// also known as swine or hogs, calculated by the university of random numbers
+#define PIG_COP_PROBABILITY 40

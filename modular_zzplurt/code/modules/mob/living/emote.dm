@@ -119,7 +119,15 @@
 	var/mob/living/carbon/human/H = user
 	if(!istype(H))
 		return
-	if(H.gender == FEMALE)
+
+	var/timbre
+	if(H.gender == FEMALE || H.gender == MALE)
+		timbre = H.gender
+	else
+		// Nonbinary uses physique instead
+		timbre = H.physique
+
+	if(timbre == FEMALE)
 		if(H.arousal >= 50)
 			sound = pick('modular_zzplurt/sound/voice/moan_fsex (8).ogg','modular_zzplurt/sound/voice/moan_fsex (9).ogg','modular_zzplurt/sound/voice/moan_fsex (10).ogg','modular_zzplurt/sound/voice/moan_fsex (11).ogg','modular_zzplurt/sound/voice/moan_fsex (12).ogg','modular_zzplurt/sound/voice/moan_fsex (13).ogg','modular_zzplurt/sound/voice/moan_fsex (14).ogg','modular_zzplurt/sound/voice/moan_fsex (15).ogg')
 		else
@@ -1231,6 +1239,14 @@
 	cooldown = 0.67 SECONDS
 	sound_volume = 25
 
+/datum/emote/living/shiss
+	key = "shiss"
+	key_third_person = "hisses"
+	message = "hisses!"
+	sound = 'modular_zzplurt/sound/voice/snake_hiss.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
 /datum/emote/living/hiss
 	key = "hiss"
 	key_third_person = "hisses"
@@ -1282,7 +1298,18 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/pain/get_sound(mob/living/user)
-	if(user.gender == MALE)
+	var/timbre
+	if(user.gender == FEMALE || user.gender == MALE)
+		timbre = user.gender
+	else
+		var/mob/living/carbon/human/H = user
+		if(istype(H))
+			// Nonbinary try to use physique instead
+			timbre = H.physique
+		else
+			timbre = user.gender
+
+	if(timbre == MALE)
 		return pick('modular_zzplurt/sound/voice/human_male_pain_1.ogg', 'modular_zzplurt/sound/voice/human_male_pain_2.ogg', 'modular_zzplurt/sound/voice/human_male_pain_3.ogg', 'modular_zzplurt/sound/voice/human_male_pain_rare.ogg', 'modular_zzplurt/sound/voice/human_male_scream_1.ogg', 'modular_zzplurt/sound/voice/human_male_scream_2.ogg', 'modular_zzplurt/sound/voice/human_male_scream_3.ogg', 'modular_zzplurt/sound/voice/human_male_scream_4.ogg')
 	return pick('modular_zzplurt/sound/voice/human_female_pain_1.ogg', 'modular_zzplurt/sound/voice/human_female_pain_2.ogg', 'modular_zzplurt/sound/voice/human_female_pain_3.ogg', 'modular_zzplurt/sound/voice/human_female_scream_2.ogg', 'modular_zzplurt/sound/voice/human_female_scream_3.ogg', 'modular_zzplurt/sound/voice/human_female_scream_4.ogg')
 
@@ -1293,3 +1320,116 @@
 	message_mime = "silently explains they blew up Malaysia!"
 	emote_type = EMOTE_AUDIBLE
 	sound = 'modular_zzplurt/sound/voice/malaysia.ogg'
+
+/datum/emote/living/wchoo
+	key = "wachoo"
+	key_third_person = "sneezes!"
+	message = "sneezes!"
+	sound = 'modular_zzplurt/sound/voice/wawa_achoo.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wchatter
+	key = "wachat"
+	key_third_person = "waa's"
+	message = "waa's!"
+	sound = 'modular_zzplurt/sound/voice/wawa_chatter.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wchillin
+	key = "wachillin"
+	key_third_person = "waa's happily!"
+	message = "waa's happily!"
+	sound = 'modular_zzplurt/sound/voice/wawa_chillin.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wdepression
+	key = "wasad"
+	key_third_person = "waa's sadly."
+	message = "waa's sadly.."
+	sound = 'modular_zzplurt/sound/voice/wawa_depression.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wdespair
+	key = "wadespair"
+	key_third_person = "waa's sadly."
+	message = "waa's sadly.."
+	sound = 'modular_zzplurt/sound/voice/wawa_despair.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wexclaim
+	key = "waexclaim"
+	key_third_person = "waa's curiously."
+	message = "waa's!"
+	sound = 'modular_zzplurt/sound/voice/wawa_exclaim.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wprotest
+	key = "waprotest"
+	key_third_person = "waa's in protest!"
+	message = "waa's in protest!"
+	sound = 'modular_zzplurt/sound/voice/wawa_protest.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wmock
+	key = "wamock"
+	key_third_person = "mocks in waa's"
+	message = "mocks in waa's!"
+	sound = 'modular_zzplurt/sound/voice/wawa_mock.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wquestion
+	key = "waquestion"
+	key_third_person = "curiously waa's"
+	message = "curiously waa's."
+	sound = 'modular_zzplurt/sound/voice/wawa_question.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wstate
+	key = "wastate"
+	key_third_person = "waa's!"
+	message = "waa's!"
+	sound = 'modular_zzplurt/sound/voice/wawa_statement.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wend
+	key = "waend"
+	key_third_person = "lets out their final waa!"
+	message = "lets out their final waa!"
+	sound = 'modular_zzplurt/sound/voice/wawa_the_end.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/wyawn
+	key = "wayawn"
+	key_third_person = "waa'awns!"
+	message = "waa'awns!"
+	sound = 'modular_zzplurt/sound/voice/wawa_yawn.ogg'
+	emote_type = EMOTE_AUDIBLE
+	sound_volume = 30
+
+/datum/emote/living/carbon/human/piss
+	key = "piss"
+
+/datum/emote/living/carbon/human/piss/can_run_emote(mob/user, status_check = TRUE, intentional, params)
+	var/obj/item/organ/bladder/bladder = user.get_organ_slot(ORGAN_SLOT_BLADDER)
+	if(bladder)
+		return ..()
+	return FALSE
+
+/datum/emote/living/carbon/human/piss/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(!user.get_organ_slot(ORGAN_SLOT_BLADDER) || !ishuman(user))
+		to_chat(user, "<span class='warning'>You don't have a bladder!</span>")
+		return
+	var/obj/item/organ/bladder/bladder = user.get_organ_slot(ORGAN_SLOT_BLADDER)
+	bladder.urinate()

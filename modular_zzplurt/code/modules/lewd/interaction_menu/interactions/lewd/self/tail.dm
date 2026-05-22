@@ -26,7 +26,7 @@
 		"intentionally squeezes their cock to the point of pain with their tail, masturbating with sharp movements.",
 		"roughly works their tail on their cock, as if striving to experience pain and pleasure simultaneously."
 	)
-	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("covers their own tail with cum."))
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("%CUMMING% covers their own tail with cum."))
 
 /datum/interaction/lewd/tail/vagina/self
 	name = "Tail. Penetrate Pussy (self)"
@@ -52,9 +52,19 @@
 		"forcefully drives their tail into themselves, as if deliberately causing themselves pain.",
 		"roughly spreads their own pussy with their tail, acting sharply and without mercy."
 	)
-	sound_possible = list('modular_zzplurt/sound/interactions/champ1.ogg',
-						'modular_zzplurt/sound/interactions/champ2.ogg')
-	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("covers their own tail with juices."))
+	sound_possible = list(
+		'modular_zzplurt/sound/interactions/WetPlap01.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap02.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap03.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap04.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap05.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap06.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap07.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap08.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap09.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap10.ogg'
+	)
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("%CUMMING% covers their own tail with juices."))
 
 /datum/interaction/lewd/tail/vagina_rub/self
 	name = "Tail. Rub Pussy (self)"
@@ -78,9 +88,19 @@
 		"sharply slaps their own pussy with their tail using merciless force, as if trying to knock out their own strength.",
 		"actively stretches their own folds with their tail, making themselves think about tearing their own body."
 	)
-	sound_possible = list('modular_zzplurt/sound/interactions/champ1.ogg',
-						'modular_zzplurt/sound/interactions/champ2.ogg')
-	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("covers their own tail with juices."))
+	sound_possible = list(
+		'modular_zzplurt/sound/interactions/WetPlap01.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap02.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap03.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap04.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap05.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap06.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap07.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap08.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap09.ogg',
+		'modular_zzplurt/sound/interactions/WetPlap10.ogg'
+	)
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("%CUMMING% covers their own tail with juices."))
 
 /datum/interaction/lewd/tail/ass/self
 	name = "Tail. Penetrate Ass (self)"
@@ -106,7 +126,7 @@
 	sound_possible = list('modular_zzplurt/sound/interactions/bang1.ogg',
 						'modular_zzplurt/sound/interactions/bang2.ogg',
 						'modular_zzplurt/sound/interactions/bang3.ogg')
-	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("tightly grips their own tail inside their ass."))
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("%CUMMING% tightly grips their own tail inside their ass."))
 
 /datum/interaction/lewd/tail/ass_rub/self
 	name = "Tail. Slide Between Cheeks (self)"
@@ -132,7 +152,7 @@
 	sound_possible = list('modular_zzplurt/sound/interactions/bang1.ogg',
 						'modular_zzplurt/sound/interactions/bang2.ogg',
 						'modular_zzplurt/sound/interactions/bang3.ogg')
-	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("tightly grips their own tail."))
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("%CUMMING% tightly grips their own tail."))
 
 /datum/interaction/lewd/tail/urethra/self
 	name = "Tail. Penetrate Urethra (self)"
@@ -161,7 +181,7 @@
 		"sharply and mercilessly pushes their tail inside their own urethra, ignoring the pain.",
 		"harshly uses their urethra for tail penetration, causing themselves sharp, piercing sensations."
 	)
-	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("tightly grips their own tail with their urethra, covering it with cum."))
+	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list("%CUMMING% tightly grips their own tail with their urethra, covering it with cum."))
 
 /datum/interaction/lewd/tail/breast/self
 	name = "Tail. Slide Between Breasts (self)"

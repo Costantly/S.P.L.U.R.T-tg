@@ -129,7 +129,7 @@
 		flash_color(select_mob, flash_color = "#FF0000", flash_time = 3 SECONDS)
 
 	var/megafauna_choice = pick(
-		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner,
+		/mob/living/basic/boss/blood_drunk_miner,
 		/mob/living/simple_animal/hostile/megafauna/dragon,
 		/mob/living/simple_animal/hostile/megafauna/hierophant,
 	)
@@ -265,7 +265,7 @@
 	if(!human_victim)
 		return
 
-	var/total_damage = human_victim.getBruteLoss() + human_victim.getFireLoss()
+	var/total_damage = human_victim.get_brute_loss() + human_victim.get_fire_loss()
 	var/divide_damage = 0
 	var/list/valid_humans = list()
 
@@ -282,9 +282,9 @@
 	var/singular_damage = total_damage / divide_damage
 
 	for(var/mob/living/carbon/human/human_target in valid_humans)
-		human_target.adjustBruteLoss(singular_damage)
+		human_target.adjust_brute_loss(singular_damage)
 
-	human_victim.heal_overall_damage(human_victim.getBruteLoss(), human_victim.getFireLoss())
+	human_victim.heal_overall_damage(human_victim.get_brute_loss(), human_victim.get_fire_loss())
 
 /datum/ash_ritual/banish_kin
 	name = "Banish Kin"
@@ -364,7 +364,7 @@
 	if(find_animal.sentience_type != SENTIENCE_ORGANIC)
 		return FALSE
 
-	find_animal.faction = list(FACTION_ASHWALKER)
+	find_animal.set_faction(list(FACTION_ASHWALKER))
 
 	if(ishostile(find_animal))
 		var/mob/living/simple_animal/hostile/hostile_animal = find_animal
@@ -387,7 +387,7 @@
 	if(find_animal.sentience_type != SENTIENCE_ORGANIC)
 		return FALSE
 
-	find_animal.faction = list(FACTION_ASHWALKER)
+	find_animal.set_faction(list(FACTION_ASHWALKER))
 
 	find_animal.revive(HEAL_ALL)
 	return TRUE

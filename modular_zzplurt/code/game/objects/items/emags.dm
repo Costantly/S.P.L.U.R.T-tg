@@ -10,6 +10,10 @@
 	desc = "A card with a blood seal attached to some circuitry. Requires special training to use properly."
 	icon = 'modular_zzplurt/icons/obj/card.dmi'
 	icon_state = "bloodmag"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.55,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.9,
+	)
 	// List of allowed types - Unused!
 	//var/type_whitelist
 
@@ -49,6 +53,16 @@
 
 	// Alert user
 	balloon_alert(user, "sanguinizer upgraded!")
+
+	// Alert in chat with reduced range
+	user.visible_message(\
+		span_notice("[user] taps the [emag_card] against the [src]."),\
+		span_notice("You tap the [emag_card] against the [src], causing it to unlock <b>sequencer mode</b>."),\
+		vision_distance = COMBAT_MESSAGE_RANGE
+	)
+
+	// Log interaction
+	log_combat(user, src, "has upgraded")
 
 // Examine text
 /obj/item/card/emag/bloodfledge/examine(mob/user)

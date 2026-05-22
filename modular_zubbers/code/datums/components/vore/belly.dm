@@ -6,7 +6,6 @@
 	var/datum/component/vore/owner
 	var/datum/digest_mode/digest_mode
 	var/noise_cooldown = 0
-
 	// Settings
 	var/can_taste = TRUE
 	var/insert_verb = "ingest"
@@ -338,7 +337,7 @@
 		if(DISABLES_SENSORS)
 			if(istype(AM, /obj/item/clothing/under))
 				var/obj/item/clothing/under/sensor_clothing = AM
-				sensor_clothing.sensor_mode = SENSOR_OFF
+				sensor_clothing.set_sensor_mode(SENSOR_OFF) //SPLURT EDIT
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
@@ -359,6 +358,10 @@
 		// Unabsorb if they leave by any method
 		REMOVE_TRAIT(M, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
 		REMOVE_TRAIT(M, TRAIT_STASIS, TRAIT_SOURCE_VORE)
+		// SPLURT MODULAR EDIT START - CHOMPStation Drain/Heal modes
+		// Clean up message timer to prevent memory leak
+		message_timers -= REF(M)
+		// SPLURT MODULAR EDIT END
 		// Absorb control handles deleting itself with binding to COMSIG_MOVABLE_MOVED
 		if(!istype(M.loc, /obj/vore_belly))
 			M.stop_sound_channel(CHANNEL_PREYLOOP)

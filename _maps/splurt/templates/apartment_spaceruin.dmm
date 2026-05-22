@@ -1,0 +1,974 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"an" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/flora/rock/style_2,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"au" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/command/glass{
+	name = "Cockpit"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"bc" = (
+/turf/closed/indestructible/hoteldoor{
+	icon_state = "door_closed";
+	icon = 'icons/obj/doors/puzzledoor/default.dmi'
+	},
+/area/misc/condo)
+"bm" = (
+/obj/machinery/status_display/random_message/directional/north,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight,
+/turf/open/floor/iron/dark/smooth_corner,
+/area/misc/condo)
+"bB" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plating,
+/area/misc/condo)
+"bD" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/light/broken/directional/south,
+/turf/open/floor/plating,
+/area/misc/condo)
+"cV" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"de" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/structure/frame/computer{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/misc/condo)
+"dx" = (
+/obj/machinery/light/small/directional/west,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/room_controller/directional/south,
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 4
+	},
+/area/misc/condo)
+"dI" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/misc/condo)
+"ea" = (
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating,
+/area/misc/condo)
+"ed" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"eI" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"fa" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"fg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/fluff/fake_camera{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"gN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/fluff/fake_camera,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"ii" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/grille/broken,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/foam,
+/area/misc/condo)
+"jf" = (
+/obj/structure/sign/directions/cryo/directional/south,
+/turf/closed/indestructible/steel,
+/area/misc/condo)
+"jh" = (
+/turf/open/space/basic,
+/area/misc/condo)
+"jC" = (
+/turf/open/floor/plating,
+/area/misc/condo)
+"jK" = (
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/misc/condo)
+"jU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper/crumpled/bloody{
+	default_raw_text = "<B>ATTENTION!</B><BR><BR>Hey there! I hope you two can read english when you crawl out of your ice beds. Your ship is kind of buried nose-deep in an asteroid tumbling through wild space right now, but DO NOT worry! I'll be back with rescue soon enough!<BR><BR>-Signed, A Concerned Space Farer, 2553"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"kx" = (
+/turf/closed/mineral,
+/area/misc/condo)
+"kE" = (
+/turf/closed/wall/r_wall,
+/area/misc/condo)
+"lS" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/grille/broken,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"mM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"nm" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"np" = (
+/obj/item/crowbar/large,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"nO" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"nU" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/misc/condo)
+"pp" = (
+/obj/item/light/tube/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"qq" = (
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/obj/effect/mapping_helpers/broken_machine,
+/turf/open/floor/plating/foam,
+/area/misc/condo)
+"rj" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/misc/condo)
+"sf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"sn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"sL" = (
+/obj/structure/girder/displaced,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating,
+/area/misc/condo)
+"tC" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/misc/condo)
+"tI" = (
+/obj/machinery/light/red/dim/directional/north,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"tN" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"tQ" = (
+/turf/closed/indestructible/steel,
+/area/misc/condo)
+"tS" = (
+/turf/closed/indestructible/fakedoor/maintenance,
+/area/misc/condo)
+"tY" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/misc/condo)
+"ue" = (
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/plating,
+/area/misc/condo)
+"uB" = (
+/obj/machinery/light/small/red/dim/directional/south,
+/obj/structure/closet/generic{
+	icon_state = "fire";
+	icon_door = "fire"
+	},
+/turf/open/floor/plating,
+/area/misc/condo)
+"uT" = (
+/obj/structure/sign/directions/engineering/directional/south,
+/turf/closed/indestructible/steel,
+/area/misc/condo)
+"vs" = (
+/obj/machinery/light/red/dim/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"vu" = (
+/obj/machinery/suit_storage_unit{
+	access_locked = 1
+	},
+/obj/effect/mapping_helpers/broken_machine,
+/turf/open/floor/iron/dark/smooth_corner,
+/area/misc/condo)
+"vS" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"vX" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"wh" = (
+/obj/structure/sign/directions/security/directional/west,
+/turf/closed/indestructible/steel,
+/area/misc/condo)
+"wp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit{
+	access_locked = 1
+	},
+/obj/effect/mapping_helpers/broken_machine,
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 4
+	},
+/area/misc/condo)
+"wt" = (
+/turf/closed/indestructible/fakedoor/engineering{
+	name = "Engineering Storage"
+	},
+/area/misc/condo)
+"wH" = (
+/obj/structure/closet/generic{
+	icon_state = "eng";
+	icon_door = "eng"
+	},
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"wX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/misc/condo)
+"yj" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/misc/condo)
+"yu" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/foam,
+/area/misc/condo)
+"yG" = (
+/obj/structure/closet/firecloset/wall/empty,
+/turf/closed/wall/r_wall,
+/area/misc/condo)
+"yN" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light/small/broken/directional/south,
+/turf/open/floor/plating,
+/area/misc/condo)
+"zm" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating,
+/area/misc/condo)
+"zs" = (
+/obj/item/light/tube/broken,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Ae" = (
+/obj/structure/fluff/broken_canister_frame,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"Af" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating,
+/area/misc/condo)
+"As" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/flare,
+/turf/open/floor/plating,
+/area/misc/condo)
+"Bs" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"CK" = (
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/obj/effect/mapping_helpers/broken_machine,
+/turf/open/floor/plating,
+/area/misc/condo)
+"CQ" = (
+/obj/effect/mapping_helpers/broken_machine,
+/turf/closed/wall/r_wall,
+/area/misc/condo)
+"Da" = (
+/obj/structure/closet/emcloset/wall/empty,
+/turf/closed/wall/r_wall,
+/area/misc/condo)
+"DO" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/light/tube/broken,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"DR" = (
+/obj/machinery/computer/old{
+	dir = 1;
+	name = "Cryostasis Monitor"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"Eh" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/command/glass,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"EO" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "Cryogenics Saferoom"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Gp" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Hb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/red/dim/directional/south,
+/obj/structure/cable,
+/obj/item/flashlight,
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 1
+	},
+/area/misc/condo)
+"HO" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/light/broken/directional/north,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"IY" = (
+/obj/item/flashlight/flare,
+/obj/structure/cable,
+/obj/machinery/vending/dorms{
+	density = 0;
+	pixel_y = -32
+	},
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"Jn" = (
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/turf/open/floor/plating,
+/area/misc/condo)
+"JK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Kz" = (
+/obj/machinery/light/red/dim/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/misc/condo)
+"LT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/tank_dispenser/oxygen{
+	oxygentanks = 0
+	},
+/obj/effect/mapping_helpers/broken_machine,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"LZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"Mc" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"MK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/fireaxecabinet/empty/directional/north,
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 8
+	},
+/area/misc/condo)
+"Nl" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/closed/indestructible/fakedoor/glass_airlock,
+/area/misc/condo)
+"Ny" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/old{
+	name = "Cryostasis Monitor"
+	},
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"NE" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/closed/indestructible/steel,
+/area/misc/condo)
+"NG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Or" = (
+/obj/machinery/light/small/red/dim,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/flora/rock/pile/style_2,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"OJ" = (
+/obj/item/light/tube/broken,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"OO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"OV" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Pi" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/down,
+/turf/open/floor/plating,
+/area/misc/condo)
+"PA" = (
+/obj/machinery/computer/old{
+	name = "Malfunctioning Navigation Terminal";
+	dir = 8
+	},
+/turf/open/floor/plating/foam,
+/area/misc/condo)
+"PR" = (
+/obj/structure/firelock_frame,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"PV" = (
+/turf/closed/indestructible/fakedoor/glass_airlock{
+	name = "Commons Area"
+	},
+/area/misc/condo)
+"QJ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"QN" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/command/glass,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Rv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/down,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"RZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Sg" = (
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"Sh" = (
+/obj/machinery/light/red/dim/directional/north,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"Tm" = (
+/obj/machinery/power/smes,
+/obj/effect/mapping_helpers/broken_machine,
+/turf/open/floor/plating,
+/area/misc/condo)
+"Tn" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"Tv" = (
+/obj/machinery/light/red/dim/directional/north,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"TH" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"UA" = (
+/turf/closed/indestructible/fakedoor/glass_airlock{
+	name = "Armory"
+	},
+/area/misc/condo)
+"UE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/iron/dark/smooth_half{
+	dir = 1
+	},
+/area/misc/condo)
+"Vk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/generic{
+	icon_state = "emergency";
+	icon_door = "emergency"
+	},
+/turf/open/floor/plating,
+/area/misc/condo)
+"Vz" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating,
+/area/misc/condo)
+"VK" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/plating,
+/area/misc/condo)
+"Wd" = (
+/obj/machinery/light/red/dim/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/misc/condo)
+"Wk" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_half,
+/area/misc/condo)
+"Wn" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/structure/flora/rock/pile/style_2,
+/turf/open/floor/plating,
+/area/misc/condo)
+"Wp" = (
+/obj/structure/showcase/machinery/oldpod{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/broken_machine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"WH" = (
+/obj/machinery/light/broken/directional/east,
+/obj/effect/decal/cleanable/blood/gibs/robot_debris/up,
+/turf/open/floor/plating,
+/area/misc/condo)
+"Xr" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/structure/girder/displaced,
+/turf/open/floor/plating,
+/area/misc/condo)
+"YS" = (
+/obj/effect/mapping_helpers/broken_machine,
+/obj/structure/showcase/machinery/oldpod{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/misc/condo)
+"YT" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/light/red/dim/directional/north,
+/turf/open/floor/plating,
+/area/misc/condo)
+"YZ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/misc/condo)
+"ZV" = (
+/obj/structure/closet/generic{
+	icon_state = "eng";
+	icon_door = "eng"
+	},
+/turf/open/floor/plating,
+/area/misc/condo)
+
+(1,1,1) = {"
+tQ
+tQ
+NE
+tQ
+kE
+bc
+kE
+kE
+kE
+kE
+UA
+UA
+kE
+kx
+kx
+"}
+(2,1,1) = {"
+tQ
+Tm
+tN
+ZV
+CQ
+bm
+DR
+Ny
+dx
+kE
+nO
+vS
+CK
+jh
+kx
+"}
+(3,1,1) = {"
+tQ
+YT
+yj
+wH
+kE
+pp
+YS
+Wp
+IY
+kE
+Tv
+sn
+CK
+kx
+kx
+"}
+(4,1,1) = {"
+tQ
+rj
+As
+bB
+kE
+MK
+np
+jU
+Hb
+Da
+TH
+nm
+Jn
+jh
+kx
+"}
+(5,1,1) = {"
+tQ
+Gp
+uT
+tQ
+kE
+kE
+kE
+EO
+kE
+yG
+fa
+rj
+Jn
+jh
+kx
+"}
+(6,1,1) = {"
+PV
+NG
+NG
+QN
+fg
+Kz
+nm
+RZ
+RZ
+Nl
+sn
+OJ
+CK
+kx
+kx
+"}
+(7,1,1) = {"
+PV
+QJ
+Rv
+Eh
+zs
+OV
+ed
+Sg
+WH
+Mc
+JK
+PR
+tQ
+kx
+kx
+"}
+(8,1,1) = {"
+tQ
+Gp
+jf
+tQ
+tC
+jK
+ea
+tC
+tQ
+tQ
+tI
+gN
+tQ
+tQ
+kx
+"}
+(9,1,1) = {"
+tQ
+wX
+uB
+tQ
+vu
+UE
+Ae
+OO
+wp
+wh
+eI
+vS
+Or
+tQ
+kx
+"}
+(10,1,1) = {"
+tQ
+tY
+Vk
+tQ
+LT
+Tn
+an
+mM
+Wk
+au
+rj
+vS
+JK
+wt
+kx
+"}
+(11,1,1) = {"
+tQ
+tY
+VK
+tQ
+Sh
+Bs
+YZ
+LZ
+vs
+tQ
+jC
+nU
+yN
+tQ
+kx
+"}
+(12,1,1) = {"
+tQ
+Wd
+wX
+Gp
+Wk
+sf
+sf
+vX
+Wk
+tC
+Af
+sL
+tC
+tQ
+kx
+"}
+(13,1,1) = {"
+tQ
+ue
+nU
+tQ
+HO
+cV
+LZ
+Wn
+bD
+tQ
+Pi
+tC
+kx
+kx
+kx
+"}
+(14,1,1) = {"
+tQ
+zm
+tC
+tQ
+de
+DO
+dI
+yu
+PA
+Vz
+Xr
+kx
+kx
+kx
+kx
+"}
+(15,1,1) = {"
+tQ
+Vz
+kx
+kx
+lS
+kx
+ii
+qq
+CK
+Vz
+kx
+kx
+kx
+kx
+kx
+"}
+(16,1,1) = {"
+tQ
+tS
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+kx
+"}

@@ -7,9 +7,9 @@
 	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_VAGINA)
 	additional_details = list(INTERACTION_FILLS_CONTAINERS)
 	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list(
-		"cums hard on their fingers",
-		"shudders as they cum on their hand",
-		"fingers themself to climax"
+		"%CUMMING% cums hard on their fingers",
+		"%CUMMING% shudders as they cum on their hand",
+		"%CUMMING% fingers themself to climax"
 	))
 	cum_self_text_overrides = list(CLIMAX_POSITION_USER = list(
 		"You cum hard on your fingers",
@@ -23,7 +23,19 @@
 		"fingers their own pussy hard"
 	)
 	sound_possible = list(
-		'modular_zzplurt/sound/interactions/champ_fingering.ogg'
+		'modular_zzplurt/sound/interactions/fingering01.ogg',
+		'modular_zzplurt/sound/interactions/fingering02.ogg',
+		'modular_zzplurt/sound/interactions/fingering03.ogg',
+		'modular_zzplurt/sound/interactions/fingering04.ogg',
+		'modular_zzplurt/sound/interactions/fingering05.ogg',
+		'modular_zzplurt/sound/interactions/fingering06.ogg',
+		'modular_zzplurt/sound/interactions/fingering07.ogg',
+		'modular_zzplurt/sound/interactions/fingering08.ogg',
+		'modular_zzplurt/sound/interactions/fingering09.ogg',
+		'modular_zzplurt/sound/interactions/fingering10.ogg',
+		'modular_zzplurt/sound/interactions/fingering11.ogg',
+		'modular_zzplurt/sound/interactions/fingering12.ogg',
+		'modular_zzplurt/sound/interactions/fingering13.ogg'
 	)
 	sound_range = 1
 	sound_use = TRUE
@@ -65,7 +77,19 @@
 		"fingers themself hard"
 	)
 	sound_possible = list(
-		'modular_zzplurt/sound/interactions/champ_fingering.ogg'
+		'modular_zzplurt/sound/interactions/fingering01.ogg',
+		'modular_zzplurt/sound/interactions/fingering02.ogg',
+		'modular_zzplurt/sound/interactions/fingering03.ogg',
+		'modular_zzplurt/sound/interactions/fingering04.ogg',
+		'modular_zzplurt/sound/interactions/fingering05.ogg',
+		'modular_zzplurt/sound/interactions/fingering06.ogg',
+		'modular_zzplurt/sound/interactions/fingering07.ogg',
+		'modular_zzplurt/sound/interactions/fingering08.ogg',
+		'modular_zzplurt/sound/interactions/fingering09.ogg',
+		'modular_zzplurt/sound/interactions/fingering10.ogg',
+		'modular_zzplurt/sound/interactions/fingering11.ogg',
+		'modular_zzplurt/sound/interactions/fingering12.ogg',
+		'modular_zzplurt/sound/interactions/fingering13.ogg'
 	)
 	sound_range = 1
 	sound_use = TRUE

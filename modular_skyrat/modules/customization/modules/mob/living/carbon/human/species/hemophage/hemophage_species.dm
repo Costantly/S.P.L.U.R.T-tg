@@ -23,7 +23,7 @@
 	mutantlungs = null
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_HUMAN
-	skinned_type = /obj/item/stack/sheet/animalhide/human
+	skinned_type = /obj/item/stack/sheet/animalhide/carbon/human
 
 /datum/species/hemophage/allows_food_preferences()
 	return FALSE
@@ -129,8 +129,6 @@
 								having to expend any blood to maintain minimal bodily functions \
 								so long as their host remains stationary in said locker.",
 		),
-		// SPLURT EDIT - REMOVAL
-		/*
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "biohazard",
@@ -139,8 +137,6 @@
 								other viruses and don't actually require an external source of oxygen \
 								to stay alive.",
 		),
-		*/
-		// SPLURT EDIT END
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "tint",

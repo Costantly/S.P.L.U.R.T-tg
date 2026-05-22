@@ -7,9 +7,9 @@
 	cum_genital = list(CLIMAX_POSITION_USER = CLIMAX_PENIS)
 	additional_details = list(INTERACTION_FILLS_CONTAINERS)
 	cum_message_text_overrides = list(CLIMAX_POSITION_USER = list(
-		"cums hard on their hand",
-		"shoots their load onto their fingers",
-		"ejaculates onto their palm"
+		"%CUMMING% cums hard on their hand",
+		"%CUMMING% shoots their load onto their fingers",
+		"%CUMMING% ejaculates onto their palm"
 	))
 	cum_self_text_overrides = list(CLIMAX_POSITION_USER = list(
 		"You cum hard on your hand",
@@ -23,9 +23,11 @@
 		"wanks their cock hard"
 	)
 	sound_possible = list(
-		'modular_zzplurt/sound/interactions/bang1.ogg',
-		'modular_zzplurt/sound/interactions/bang2.ogg',
-		'modular_zzplurt/sound/interactions/bang3.ogg'
+		'modular_zzplurt/sound/interactions/fap1.ogg',
+		'modular_zzplurt/sound/interactions/fap2.ogg',
+		'modular_zzplurt/sound/interactions/fap3.ogg',
+		'modular_zzplurt/sound/interactions/fap4.ogg',
+		'modular_zzplurt/sound/interactions/fap5.ogg'
 	)
 	sound_range = 1
 	sound_use = TRUE

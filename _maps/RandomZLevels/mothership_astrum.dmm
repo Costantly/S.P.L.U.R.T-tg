@@ -2635,11 +2635,11 @@
 /turf/open/floor/iron,
 /area/awaymission/mothership_astrum/deck2)
 "Na" = (
-/obj/machinery/light/directional/east,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/light/floor,
 /turf/open/floor/iron,
 /area/awaymission/mothership_astrum/deck2)
 "Nd" = (
@@ -2671,7 +2671,7 @@
 /obj/structure/window/spawner/directional/north,
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
-/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/disk/computer/syndicate/camera_app,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "Ns" = (
@@ -22372,8 +22372,8 @@ ES
 ES
 Jx
 KL
-Na
 MR
+Na
 MR
 MR
 Qr

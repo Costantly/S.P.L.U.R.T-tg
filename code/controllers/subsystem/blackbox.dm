@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(blackbox)
 							"round_end_stats" = 2,
 							"testmerged_prs" = 2,
 							"dynamic_threat" = 2,
+							"bitrunning_domain_loaded" = 2,
 						) //associative list of any feedback variables that have had their format changed since creation and their current version, remember to update this
 
 /datum/controller/subsystem/blackbox/Initialize()
@@ -154,6 +155,8 @@ SUBSYSTEM_DEF(blackbox)
 			record_feedback("tally", "radio_usage", 1, "supply")
 		if(FREQ_CENTCOM)
 			record_feedback("tally", "radio_usage", 1, "centcom")
+		if(FREQ_IAA)
+			record_feedback("tally", "radio_usage", 1, "internal affairs")
 		if(FREQ_AI_PRIVATE)
 			record_feedback("tally", "radio_usage", 1, "ai private")
 		if(FREQ_ENTERTAINMENT)
@@ -333,7 +336,7 @@ Versioning
 		first_death["role"] = null
 		first_death["role"] = L.mind.assigned_role.title
 		first_death["area"] = "[AREACOORD(L)]"
-		first_death["damage"] = "<font color='#FF5555'>[L.getBruteLoss()]</font>/<font color='orange'>[L.getFireLoss()]</font>/<font color='lightgreen'>[L.getToxLoss()]</font>/<font color='lightblue'>[L.getOxyLoss()]</font>"
+		first_death["damage"] = "<font color='#FF5555'>[L.get_brute_loss()]</font>/<font color='orange'>[L.get_fire_loss()]</font>/<font color='lightgreen'>[L.get_tox_loss()]</font>/<font color='lightblue'>[L.get_oxy_loss()]</font>"
 		first_death["last_words"] = L.last_words
 
 	if(!SSdbcore.Connect())
@@ -355,12 +358,12 @@ Versioning
 		"pod" = get_area_name(L, TRUE),
 		"laname" = L.lastattacker,
 		"lakey" = L.lastattackerckey,
-		"brute" = L.getBruteLoss(),
-		"fire" = L.getFireLoss(),
+		"brute" = L.get_brute_loss(),
+		"fire" = L.get_fire_loss(),
 		"brain" = L.get_organ_loss(ORGAN_SLOT_BRAIN) || BRAIN_DAMAGE_DEATH, //get_organ_loss returns null without a brain but a value is required for this column
-		"oxy" = L.getOxyLoss(),
-		"tox" = L.getToxLoss(),
-		"stamina" = L.getStaminaLoss(),
+		"oxy" = L.get_oxy_loss(),
+		"tox" = L.get_tox_loss(),
+		"stamina" = L.get_stamina_loss(),
 		"x_coord" = L.x,
 		"y_coord" = L.y,
 		"z_coord" = L.z,

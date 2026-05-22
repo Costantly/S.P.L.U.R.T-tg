@@ -330,14 +330,14 @@
 
 	// The constantly decreasing degradation will constantly lower the minimum stamina damage, and thus, if we DONT check a range of staminaloss,
 	// we will always consider it "above" our minimum, and thus never delay stamina regen.
-	var/owner_staminaloss = owner.getStaminaLoss()
+	var/owner_staminaloss = owner.get_stamina_loss()
 	if (minimum_stamina_damage <= 0)
 		return
 	if (owner_staminaloss > minimum_stamina_damage)
 		return
 
 	var/final_adjustment = max((minimum_stamina_damage - owner_staminaloss), 0)
-	owner.adjustStaminaLoss(final_adjustment) // we adjust instead of set for things like stamina regen timer
+	owner.adjust_stamina_loss(final_adjustment) // we adjust instead of set for things like stamina regen timer
 
 /**
  * Sends a flavorful to_chat to the target, picking from degradation_messages[current_degradation_level]. Can fail to send one if no message is found.
@@ -461,8 +461,8 @@
 		message += span_danger("\nRezadone of purity at or above <i>[DEATH_CONSEQUENCES_REZADONE_MINIMUM_PURITY]</i>% will reduce degradation by [span_blue("[rezadone_degradation_decrease]")] per second when metabolized.")
 	if (eigenstasium_degradation_decrease)
 		message += span_danger("\nEigenstasium will reduce degradation by [span_blue("[eigenstasium_degradation_decrease]")] per second when present.")
-
-	message += span_danger("\nAll degradation reduction can be [span_blue("expedited")] by [span_blue("resting, sleeping, or being buckled to something comfortable")].")
+	if (base_degradation_reduction_per_second_while_alive > 0 || rezadone_degradation_decrease > 0 && eigenstasium_degradation_decrease > 0)
+		message += span_danger("\nAll degradation reduction can be [span_blue("expedited")] by [span_blue("resting, sleeping, or being buckled to something comfortable")].")
 
 	if (permakill_if_at_max_degradation)
 		message += span_revenwarning("\n\n<b><i>SUBJECT WILL BE PERMANENTLY KILLED IF DEGRADATION REACHES MAXIMUM!</i></b>")
@@ -504,7 +504,7 @@
 		return // sanity
 
 	var/ckey = LOWER_TEXT(owner.mind?.key)
-	if (isnull(ckey) || ckey != source.ckey)
+	if (isnull(ckey))
 		return // sanity
 
 	var/datum/preferences/victim_prefs = source.prefs
@@ -517,6 +517,9 @@
 	base_degradation_reduction_per_second_while_alive = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/living_degradation_recovery_per_second)
 	base_degradation_per_second_while_dead = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/dead_degradation_per_second)
 	base_degradation_on_death = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/degradation_on_death)
+
+	stasis_passive_degradation_multiplier = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/stasis_dead_degradation_mult)
+	formaldehyde_death_degradation_mult = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/formeldahyde_dead_degradation_mult)
 
 	var/min_crit_threshold_percent = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/crit_threshold_reduction_min_percent_of_max)
 	crit_threshold_min_degradation = (max_degradation * (min_crit_threshold_percent / 100))

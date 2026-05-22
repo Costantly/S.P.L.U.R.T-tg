@@ -67,6 +67,7 @@
 #define EXP_TYPE_LIVING "Living"
 #define EXP_TYPE_CREW "Crew"
 #define EXP_TYPE_CENTRAL_COMMAND "Central Command" // SKYRAT EDIT ADD
+#define EXP_TYPE_INTERNAL "Internal Affairs" // SPLURT EDIT
 #define EXP_TYPE_COMMAND "Command"
 #define EXP_TYPE_ENGINEERING "Engineering"
 #define EXP_TYPE_MEDICAL "Medical"
@@ -165,8 +166,6 @@
 #define LOADOUT_FLAG_GREYSCALING_ALLOWED (1<<2)
 /// Allows the item to be renamed by the player.
 #define LOADOUT_FLAG_ALLOW_NAMING (1<<3)
-/// Allows the item to be reskinned by the player. Only applicable to items with unique_reskin defined.
-#define LOADOUT_FLAG_ALLOW_RESKIN (1<<4)
 
 // Loadout item info keys
 // Changing these will break existing loadouts

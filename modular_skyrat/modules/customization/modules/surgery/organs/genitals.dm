@@ -147,6 +147,9 @@
 	var/girth = 9
 	var/sheath = SHEATH_NONE
 	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/penis
+	var/knotted = FALSE
+	var/override_string_knot = "knot"
+	var/override_string_tie = "tie"
 
 /datum/bodypart_overlay/mutant/genital/penis
 	feature_key = ORGAN_SLOT_PENIS
@@ -163,7 +166,7 @@
 			if(SHEATH_SLIT)
 				returned_string = "You see a slit." ///Typo fix.
 		if(aroused != AROUSAL_PARTIAL)
-			return
+			return returned_string
 		returned_string += " There's a [pname]penis poking out of it. "
 	else
 		returned_string += "You see a [pname]penis. "
@@ -177,7 +180,7 @@
 			//I love penis math
 			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
 	reported_length = CEILING(reported_length,0.25)
-	returned_string = "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
+	returned_string += "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
 
 	switch(aroused)
 		if(AROUSAL_NONE)
@@ -192,17 +195,36 @@
 /obj/item/organ/genital/penis/update_genital_icon_state()
 	var/size_affix
 	var/measured_size = FLOOR(genital_size,1)
-	if(measured_size < 1)
-		measured_size = 1
-	switch(measured_size)
-		if(1 to 8)
-			size_affix = "1"
-		if(9 to 15)
-			size_affix = "2"
-		if(16 to 24)
-			size_affix = "3"
-		else
-			size_affix = "4"
+	if(findtext(genital_name, "(Alt)"))
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 10)
+				size_affix = "1"
+			if(11 to 20)
+				size_affix = "2"
+			if(21 to 30)
+				size_affix = "3"
+			if(31 to 40)
+				size_affix = "4"
+			if(41 to 50)
+				size_affix = "5"
+			if(51 to 61)
+				size_affix = "6"
+			else
+				size_affix = "7"
+	else
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 8)
+				size_affix = "1"
+			if(9 to 15)
+				size_affix = "2"
+			if(16 to 24)
+				size_affix = "3"
+			else
+				size_affix = "4"
 	var/passed_string = "penis_[genital_type]_[size_affix]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -220,35 +242,53 @@
 	var/is_erect = 0
 	if(aroused == AROUSAL_FULL)
 		is_erect = 1
-	if(measured_size < 1)
-		measured_size = 1
-	switch(measured_size)
-	//SPLURT EDIT START
-	/*
-		if(1 to 8)
-			size_affix = "1"
-		if(9 to 15)
-			size_affix = "2"
-		if(16 to 24)
-			size_affix = "3"
-		else
-			size_affix = "4"
-	*/
-		if(1 to 6)
-			size_affix = "1"
-		if(7 to 11)
-			size_affix = "2"
-		if(12 to 36)
-			size_affix = "3"
-		if(37 to 48)
-			size_affix = "4"
-		if(49 to 56)
-			size_affix = "5"
-		if(57 to 64)
-			size_affix = "6"
-		else
-			size_affix = "7"
-	//SPLURT EDIT END
+	if(findtext(genital_name, "(Alt)"))
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 10)
+				size_affix = "1"
+			if(11 to 20)
+				size_affix = "2"
+			if(21 to 30)
+				size_affix = "3"
+			if(31 to 40)
+				size_affix = "4"
+			if(41 to 50)
+				size_affix = "5"
+			if(51 to 61)
+				size_affix = "6"
+			else
+				size_affix = "7"
+	else
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			//SPLURT EDIT START
+			/*
+				if(1 to 8)
+					size_affix = "1"
+				if(9 to 15)
+					size_affix = "2"
+				if(16 to 24)
+					size_affix = "3"
+				else
+					size_affix = "4"
+			*/
+			if(1 to 6)
+				size_affix = "1"
+			if(7 to 11)
+				size_affix = "2"
+			if(12 to 36)
+				size_affix = "3"
+			if(37 to 48)
+				size_affix = "4"
+			if(49 to 56)
+				size_affix = "5"
+			if(57 to 64)
+				size_affix = "6"
+			else
+				size_affix = "7"
 	var/passed_string = "[genital_type]_[size_affix]_[is_erect]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -267,6 +307,9 @@
 		sheath = DNA.features["penis_sheath"]
 	if(DNA.features["penis_uses_skintones"])
 		uses_skintones = accessory.has_skintone_shading
+	knotted = snake.knotted
+	override_string_knot = snake.override_string_knot
+	override_string_tie = snake.override_string_tie
 
 /datum/bodypart_overlay/mutant/genital/penis/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_PENIS]
@@ -291,7 +334,11 @@
 	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, TESTICLES_MAX_SIZE)
+	var/measured_size = FLOOR(genital_size,1)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 1, max_size)
 	var/passed_string = "testicles_[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -315,7 +362,10 @@
 
 /obj/item/organ/genital/testicles/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 0, TESTICLES_MAX_SIZE)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 0, max_size)
 	var/passed_string = "[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -495,7 +545,9 @@
 	/*
 	var/max_size = 5
 	if(genital_type == "pair")
-		max_size = 16
+		max_size = findtext(genital_name, "(Alt)") ? 19 : 16
+	if(genital_type == "quad")
+		max_size = findtext(genital_name, "(Alt)") ? 19 : 5
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
 		current_size = 0
@@ -547,16 +599,16 @@
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
 
-	var/list/genital_list = list()
+	var/list/genital_list = list("all")
 	for(var/obj/item/organ/genital/genital in organs)
 		if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
 			genital_list += genital
-	if(!genital_list.len) //There is nothing to expose
+	if(genital_list.len == 1) //There is nothing to expose
 		return
 	//Full list of exposable genitals created
 	var/obj/item/organ/genital/picked_organ
 	picked_organ = input(src, "Choose which genitalia to expose/hide", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && (picked_organ in organs))
+	if(picked_organ && ((picked_organ in organs) || picked_organ == "all"))
 		var/list/gen_vis_trans = list("Never show" = GENITAL_NEVER_SHOW,
 												"Hidden by clothes" = GENITAL_HIDDEN_BY_CLOTHES,
 												"Always show" = GENITAL_ALWAYS_SHOW
@@ -564,6 +616,12 @@
 		var/picked_visibility = input(src, "Choose visibility setting", "Expose/Hide genitals") as null|anything in gen_vis_trans
 		if(picked_visibility && picked_organ && (picked_organ in organs))
 			picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
+			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
+		if(picked_visibility && picked_organ == "all")
+			for(var/obj/item/organ/genital/genital in organs)
+				if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
+					genital.visibility_preference = gen_vis_trans[picked_visibility]
 			update_body()
 			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
 	return
