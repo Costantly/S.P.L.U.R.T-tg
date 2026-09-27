@@ -29,18 +29,39 @@
 	part_item = new_part
 	RegisterSignal(part_item, COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS, PROC_REF(get_separate_worn_overlays))
 
+//BUBBER ADDITION START
+/proc/is_mod_part_or_control(obj/item/item)
+	if(!istype(item))
+		return FALSE
+
+	var/static/list/mod_item_typecache = typecacheof(list(
+		/obj/item/clothing/glasses/mod,
+		/obj/item/clothing/gloves/mod,
+		/obj/item/clothing/head/mod,
+		/obj/item/clothing/neck/mod,
+		/obj/item/clothing/shoes/mod,
+		/obj/item/clothing/suit/mod,
+		/obj/item/mod/control,
+	))
+	return is_type_in_typecache(item, mod_item_typecache)
+//BUBBER ADDITION END
+
 // If we're overslotting an item, add its visual as an underlay
-/datum/mod_part/proc/get_separate_worn_overlays(obj/item/source, list/overlays, mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
+/datum/mod_part/proc/get_separate_worn_overlays(obj/item/source, list/overlays, mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	SIGNAL_HANDLER
 
 	if (!overslotting || sealed)
 		return
+	//BUBBER ADDITION START
+	if(is_mod_part_or_control(overslotting))
+		return
+	//BUBBER ADDITION END
 
 	var/checked_slot = source.slot_flags
 	if (ismob(source.loc))
 		var/mob/as_mob = source.loc
 		checked_slot = as_mob.get_slot_by_item(source)
-	var/mutable_appearance/worn_overlay = overslotting.build_worn_icon(default_layer = -draw_target.layer + 0.1, default_icon_file = get_default_icon_by_slot(checked_slot))
+	var/mutable_appearance/worn_overlay = overslotting.build_worn_icon(default_layer = -draw_target.layer + 0.1, default_icon_file = get_default_icon_by_slot(checked_slot), bodyshape = bodyshape)
 	for (var/mutable_appearance/overlay in worn_overlay.overlays)
 		overlay.layer = draw_target.layer + 0.1
 	overlays += worn_overlay

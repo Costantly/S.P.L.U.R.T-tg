@@ -11,6 +11,7 @@
 	floor_placeable = TRUE
 	var/list/squeak_override //Weighted list; If you want your plush to have different squeak sounds use this
 	var/stuffed = TRUE //If the plushie has stuffing in it
+	var/plappable = FALSE //SPLURT EDIT - What are you doing cutting a hole in that plushie?!
 	var/obj/item/grenade/grenade //You can remove the stuffing from a plushie and add a grenade to it for *nefarious uses*
 	//--love ~<3--
 	gender = NEUTER
@@ -131,50 +132,54 @@
 	else
 		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww..."))
 
-/obj/item/toy/plush/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(I.get_sharpness())
-		if(!grenade)
-			if(!stuffed)
-				to_chat(user, span_warning("You already murdered it!"))
-				return
-			if(!divine)
-				user.visible_message(span_notice("[user] tears out the stuffing from [src]!"), span_notice("You rip a bunch of the stuffing from [src]. Murderer."))
-				I.play_tool_sound(src)
-				stuffed = FALSE
-			else
-				to_chat(user, span_notice("What a fool you are. [src] is a god, how can you kill a god? What a grand and intoxicating innocence."))
-				user.adjust_drunk_effect(20, up_to = 50)
-
-				var/turf/current_location = get_turf(user)
-				var/area/current_area = current_location.loc //copied from hand tele code
-				if(current_location && current_area && (current_area.area_flags & NOTELEPORT))
-					to_chat(user, span_notice("There is no escape. No recall or intervention can work in this place."))
-				else
-					to_chat(user, span_notice("There is no escape. Although recall or intervention can work in this place, attempting to flee from [src]'s immense power would be futile."))
-				user.visible_message(span_notice("[user] lays down their weapons and begs for [src]'s mercy!"), span_notice("You lay down your weapons and beg for [src]'s mercy."))
-				user.drop_all_held_items()
-		else
+/obj/item/toy/plush/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.get_sharpness())
+		if(grenade)
 			to_chat(user, span_notice("You remove the grenade from [src]."))
 			user.put_in_hands(grenade)
-		return
-	if(isgrenade(I))
+			return ITEM_INTERACT_SUCCESS
+		if(!stuffed)
+			to_chat(user, span_warning("You already murdered it!"))
+			return ITEM_INTERACT_BLOCKING
+		if(!divine)
+			user.visible_message(span_notice("[user] tears out the stuffing from [src]!"), span_notice("You rip a bunch of the stuffing from [src]. Murderer."))
+			tool.play_tool_sound(src)
+			stuffed = FALSE
+			return ITEM_INTERACT_SUCCESS
+
+		to_chat(user, span_notice("What a fool you are. [src] is a god, how can you kill a god? What a grand and intoxicating innocence."))
+		user.adjust_drunk_effect(20, up_to = 50)
+
+		var/turf/current_location = get_turf(user)
+		var/area/current_area = current_location.loc //copied from hand tele code
+		if(current_location && current_area && (current_area.area_flags & NOTELEPORT))
+			to_chat(user, span_notice("There is no escape. No recall or intervention can work in this place."))
+		else
+			to_chat(user, span_notice("There is no escape. Although recall or intervention can work in this place, attempting to flee from [src]'s immense power would be futile."))
+		user.visible_message(span_notice("[user] lays down their weapons and begs for [src]'s mercy!"), span_notice("You lay down your weapons and beg for [src]'s mercy."))
+		user.drop_all_held_items()
+		return ITEM_INTERACT_SUCCESS
+
+	if(isgrenade(tool))
 		if(stuffed)
 			to_chat(user, span_warning("You need to remove some stuffing first!"))
-			return
+			return ITEM_INTERACT_BLOCKING
 		if(grenade)
 			to_chat(user, span_warning("[src] already has a grenade!"))
-			return
-		if(!user.transferItemToLoc(I, src))
-			return
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(tool, src))
+			return ITEM_INTERACT_BLOCKING
 		user.visible_message(span_warning("[user] slides [grenade] into [src]."), \
-		span_danger("You slide [I] into [src]."))
-		grenade = I
-		user.log_message("added a grenade ([I.name]) to [src]", LOG_GAME)
-		return
-	if(istype(I, /obj/item/toy/plush))
-		love(I, user)
-		return
-	return ..()
+		span_danger("You slide [tool] into [src]."))
+		grenade = tool
+		user.log_message("added a grenade ([tool.name]) to [src]", LOG_GAME)
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/toy/plush))
+		love(tool, user)
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 /obj/item/toy/plush/proc/love(obj/item/toy/plush/Kisser, mob/living/user) //~<3
 	var/chance = 100 //to steal a kiss, surely there's a 100% chance no-one would reject a plush such as I?
@@ -392,6 +397,7 @@
 	desc = "An adorable stuffed toy that resembles a space carp."
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/toy/plush/carpplushie"
+	worn_icon = "carp"
 	post_init_icon_state = "map_plushie_carp"
 	greyscale_config = /datum/greyscale_config/plush_carp
 	greyscale_colors = "#cc99ff#000000"
@@ -407,11 +413,13 @@
 	attack_verb_continuous = list("rents")
 	attack_verb_simple = list("rent")
 	squeak_override = list('sound/effects/magic/demon_attack1.ogg'=1)
+	plappable = TRUE //SPLURT EDIT - What are you doing cutting a hole in that plushie?!
 
 /obj/item/toy/plush/ratplush
 	name = "\improper Ratvar plushie"
 	desc = "An adorable plushie of the clockwork justiciar himself with new and improved spring arm action."
 	icon_state = "plushvar"
+	worn_icon = "ratvar"
 	divine = TRUE
 	var/obj/item/toy/plush/narplush/clash_target
 	gender = MALE //he's a boy, right?
@@ -422,7 +430,7 @@
 		return
 	var/obj/item/toy/plush/narplush/P = locate() in range(1, src)
 	if(P && istype(P.loc, /turf/open) && !P.clashing)
-		clash_of_the_plushies(P)
+		INVOKE_ASYNC(src, PROC_REF(clash_of_the_plushies), P)
 
 /obj/item/toy/plush/ratplush/proc/clash_of_the_plushies(obj/item/toy/plush/narplush/P)
 	clash_target = P
@@ -499,6 +507,7 @@
 	name = "\improper Nar'Sie plushie"
 	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy?"
 	icon_state = "narplush"
+	worn_icon = "narsie"
 	divine = TRUE
 	var/clashing
 	gender = FEMALE //it's canon if the toy is
@@ -507,7 +516,7 @@
 	. = ..()
 	var/obj/item/toy/plush/ratplush/P = locate() in range(1, src)
 	if(P && istype(P.loc, /turf/open) && !P.clash_target && !clashing)
-		P.clash_of_the_plushies(src)
+		INVOKE_ASYNC(P, TYPE_PROC_REF(/obj/item/toy/plush/ratplush, clash_of_the_plushies), src)
 
 /obj/item/toy/plush/lizard_plushie
 	name = "lizard plushie"
@@ -687,6 +696,7 @@
 	squeak_override = list('sound/mobs/humanoids/moth/scream_moth.ogg'=1)
 ///Used to track how many people killed themselves with item/toy/plush/moth
 	var/suicide_count = 0
+	plappable = TRUE //SPLURT EDIT - What are you doing cutting a hole in that plushie?!
 
 /obj/item/toy/plush/moth/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] stares deeply into the eyes of [src] and it begins consuming [user.p_them()]!  It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -731,6 +741,7 @@
 	attack_verb_continuous = list("abducts", "probes")
 	attack_verb_continuous = list("abduct", "probe")
 	squeak_override = list('sound/ambience/weather/ashstorm/inside/weak_end.ogg' = 1) //very faint sound since abductors are silent as far as "speaking" is concerned.
+	plappable = TRUE //SPLURT EDIT - What are you doing cutting a hole in that plushie?!
 
 /obj/item/toy/plush/abductor/agent
 	name = "abductor agent plushie"
@@ -743,6 +754,7 @@
 		'sound/items/weapons/egloves.ogg' = 2,
 		'sound/items/weapons/cablecuff.ogg' = 1,
 	)
+	plappable = TRUE //SPLURT EDIT - What are you doing cutting a hole in that plushie?!
 
 /obj/item/toy/plush/shark
 	name = "shark plushie"

@@ -278,7 +278,7 @@
 	name = "combat jaws"
 	desc = "The jaws of the law. Very sharp."
 	icon_state = "jaws"
-	force = 10
+	force = 15
 	attack_verb_simple = list("chomped", "bit", "ripped", "mauled", "enforced")
 
 /obj/item/dogborg/jaws/small
@@ -330,3 +330,9 @@
 	atom_storage.max_total_storage = 30
 	atom_storage.max_slots = 1
 	atom_storage.set_holdable(cant_hold_list = list(/obj/item/disk/nuclear))
+
+#undef STATUS_IDLE
+#undef STATUS_ENERGIZED
+#undef BASIC_CLEANSPEED
+#undef SCRUBPUP_CLEANSPEED
+#undef EMAGGED_CLEANSPEED

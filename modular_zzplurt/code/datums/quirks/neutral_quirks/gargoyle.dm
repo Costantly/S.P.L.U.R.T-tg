@@ -93,7 +93,7 @@
 	button_icon_state = "ling_camouflage"
 	var/obj/structure/statue/gargoyle/current = null
 
-/datum/action/gargoyle/transform/Trigger(trigger_flags)
+/datum/action/gargoyle/transform/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 
 	// Check parent return
@@ -135,7 +135,7 @@
 	button_icon = 'modular_skyrat/modules/clock_cult/icons/actions_clock.dmi'
 	button_icon_state = "Linked Vanguard"
 
-/datum/action/gargoyle/check/Trigger(trigger_flags)
+/datum/action/gargoyle/check/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 
 	// Check parent return
@@ -152,7 +152,7 @@
 	button_icon = 'modular_zzplurt/icons/mob/actions/actions_flightsuit.dmi'
 	button_icon_state = "flightsuit_lock"
 
-/datum/action/gargoyle/pause/Trigger(trigger_flags)
+/datum/action/gargoyle/pause/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 
 	// Check parent return
@@ -221,7 +221,7 @@
 		L.click_intercept = src
 		L.faction |= FACTION_MIMIC //Stops mimics from instaqdeling people in statues
 		old_max_health = L.maxHealth
-		old_size = H.dna.features["body_size"]
+		old_size = get_size(H)
 		atom_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
 		max_integrity = atom_integrity
 
@@ -263,8 +263,7 @@
 		petrified_mob.faction -= FACTION_MIMIC
 		petrified_mob.click_intercept = null
 		petrified_mob.dir = dir
-		petrified_mob.dna.features["body_size"] = old_size
-		petrified_mob.dna.update_body_size()
+		petrified_mob.update_size(old_size)
 		var/damage = deconstructed ? petrified_mob.health : petrified_mob.health*(old_max_health/petrified_mob.maxHealth) - atom_integrity + 100
 		petrified_mob.take_overall_damage(damage) //any new damage the statue incurred is transferred to the mob
 		petrified_mob.transform = transform
@@ -293,7 +292,7 @@
 	visible_message(span_danger("[src] shatters!"))
 	qdel(src)
 
-/obj/structure/statue/gargoyle/attackby(obj/item/W, mob/living/user, params)
+/obj/structure/statue/gargoyle/attackby(obj/item/W, mob/living/user, list/modifiers, list/attack_modifiers)
 	add_fingerprint(user)
 	//if(!(flags_1 & NODECONSTRUCT_1)) //Doesn't exist in this codebase?
 	if(default_unfasten_wrench(user, W))

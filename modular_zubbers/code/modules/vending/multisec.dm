@@ -10,13 +10,17 @@
 			"name" = "Red",
 			"icon" = "shield",
 			"products" = list(
+					/* // SPLURT EDIT - REDSEC OVERRIDE
 					/obj/item/clothing/suit/hooded/wintercoat/security/redsec = 6,
-					/obj/item/storage/backpack/security/redsec = 6,
-					/obj/item/storage/backpack/satchel/sec/redsec = 6,
-					/obj/item/storage/backpack/duffelbag/sec/redsec = 6,
-					/obj/item/clothing/under/rank/security/officer/redsec = 6,
+					/obj/item/storage/backpack/security = 6,
+					/obj/item/storage/backpack/satchel/sec = 6,
+					/obj/item/storage/backpack/duffelbag/sec = 6,
+					/obj/item/storage/backpack/messenger/sec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/camo = 6,
+					/obj/item/clothing/under/rank/security/officer/turtleneck/red = 6,
+					/obj/item/clothing/under/rank/security/officer/turtleneck/red/skirt = 6,
+					/obj/item/clothing/under/rank/security/officer/suit/red = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
 					/obj/item/clothing/shoes/jackboots/gogo_boots = 6,
@@ -25,6 +29,7 @@
 					/obj/item/clothing/head/security_kepi = 6,
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
+					/obj/item/clothing/head/soft/sec/recolorable = 6,
 					/obj/item/clothing/head/security_beanie = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/head/playbunnyears/security = 6,
@@ -40,11 +45,10 @@
 					/obj/item/clothing/neck/pauldron/commander = 6,
 					/obj/item/clothing/neck/pauldron/captain = 6,
 					/obj/item/clothing/gloves/color/black = 6,
-					/obj/item/clothing/gloves/combat/peacekeeper/armadyne = 6,
+					/obj/item/clothing/gloves/color/black/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
 					/obj/item/clothing/under/rank/security/skyrat/utility/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec = 6,
-					/obj/item/clothing/suit/toggle/jacket/sec/old = 6,
 					/obj/item/clothing/suit/armor/vest/secjacket = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
@@ -55,6 +59,7 @@
 					/obj/item/clothing/neck/security_cape = 6,
 					/obj/item/clothing/neck/security_cape/armplate = 6,
 					/obj/item/clothing/under/rank/security/officer = 6,
+					/obj/item/clothing/under/rank/security/officer/recolorable = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 6,
 					/obj/item/clothing/under/rank/security/officer/blueshirt = 6,
@@ -71,14 +76,14 @@
 					/obj/item/clothing/under/rank/security/viro/officer/skirt = 6,
 					/obj/item/clothing/under/rank/security/viro/officer/formal = 6,
 					/obj/item/clothing/under/rank/security/viro/officer/bodysuit = 6,
-					/obj/item/clothing/suit/armor/vest/secwintercoat = 6,
 					/obj/item/clothing/suit/armor/vest/viro = 6,
 					/obj/item/clothing/suit/armor/vest/viro/heavy = 6,
 					/obj/item/clothing/suit/armor/vest/viro/leatherjacket = 6,
 					/obj/item/clothing/suit/armor/vest/viro/softshell = 6,
 					/obj/item/clothing/head/sec/viro = 6,
+					/obj/item/clothing/head/helmet/sec/viro = 6,
 					/obj/item/clothing/head/sec/viro/beanie = 6,
-
+					*/
 				),
 			),
 		list(
@@ -116,10 +121,12 @@
 		),
 	)
 	premium = list(
+					/* // SPLURT REMOVAL - Moved to main category
 					/obj/item/clothing/under/rank/security/officer/formal = 6,
 					/obj/item/clothing/suit/jacket/officer/blue = 6,
 					/obj/item/clothing/head/beret/sec/navyofficer = 6,
 					/obj/item/clothing/suit/jacket/officer/tan = 6,
+					*/
 					/obj/item/clothing/accessory/badge/holo = 10, //I know there's a box of them but, why not have more, eh?
 					/obj/item/clothing/accessory/badge/holo/cord = 10,
 					/obj/item/clothing/head/helmet/blueshirt = 3,

@@ -25,7 +25,7 @@
 	if(!breasts?.internal_fluid_datum)
 		return
 
-	var/datum/reagent/milk = find_reagent_object_from_type(breasts.internal_fluid_datum)
+	var/datum/reagent/milk = GLOB.chemical_reagents_list[breasts.internal_fluid_datum]
 	var/list/original_messages = message.Copy()
 	var/chosen_message = pick(message)
 	chosen_message = replacetext(chosen_message, "%MILK%", LOWER_TEXT(milk.name))
@@ -348,7 +348,7 @@
 
 
 	// Check if target just passed out
-	if(target.stat == UNCONSCIOUS && stat_before != UNCONSCIOUS)
+	if(target.stat == HARD_CRIT && stat_before != HARD_CRIT)
 		message = list("%TARGET% passes out under %USER%'s breasts.")
 
 /datum/interaction/lewd/do_boobjob

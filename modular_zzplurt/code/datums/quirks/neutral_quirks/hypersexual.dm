@@ -81,7 +81,7 @@
 /// Proc to apply roused status to holder
 /datum/quirk/hypersexual/proc/arouse()
 	// Check if not conscious
-	if(quirk_holder.stat != CONSCIOUS)
+	if(quirk_holder.stat != STABLE)
 		// Do nothing
 		return
 
@@ -151,3 +151,4 @@
 #undef HYPERSX_ROUSE_TIME_MAX
 #undef HYPERSX_ROUSE_AMT_MIN
 #undef HYPERSX_ROUSE_AMT_MAX
+#undef HYPERSX_ROUSE_MESSAGES

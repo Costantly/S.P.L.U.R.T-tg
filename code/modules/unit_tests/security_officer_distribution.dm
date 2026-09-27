@@ -1,11 +1,14 @@
-#define SECURITY_OFFICER_DEPARTMENTS list("a", "b", "c", "d")
+#define SECURITY_OFFICER_DEPARTMENTS list("a", "b", "c", "d", "e")
 #define SECURITY_OFFICER_DEPARTMENTS_TO_NAMES (list( \
 	"a" = SEC_DEPT_ENGINEERING, \
 	"b" = SEC_DEPT_MEDICAL, \
 	"c" = SEC_DEPT_SCIENCE, \
 	"d" = SEC_DEPT_SUPPLY, \
+	"e" = SEC_DEPT_SERVICE, \
 ))
 
+// BUBBER EDIT BEGIN REMOVAL - We don't distribute in a special pairing system
+/*
 /// Test that security officers with specific distributions get their departments.
 /datum/unit_test/security_officer_roundstart_distribution
 
@@ -106,6 +109,6 @@
 	test("a", list("a", "a", "b"), "b")
 	test("a", list("a", "a", "b", "b"), "c")
 	test("a", list("a", "a", "b", "b", "c", "c", "d", "d"), "a")
-
+*/
 #undef SECURITY_OFFICER_DEPARTMENTS
 #undef SECURITY_OFFICER_DEPARTMENTS_TO_NAMES

@@ -91,9 +91,9 @@
 	return load_songs_from_config()
 
 /// Loads the config sounds once, and returns a copy of them.
-/datum/jukebox/proc/load_songs_from_config()
+/datum/jukebox/proc/load_songs_from_config(force = FALSE)
 	var/static/list/config_songs
-	if(isnull(config_songs))
+	if(isnull(config_songs) || force)
 		config_songs = list()
 		var/list/tracks = flist(CONFIG_JUKEBOX_SOUNDS)
 		for(var/track_file in tracks)
@@ -237,7 +237,7 @@
 		/* SPLURT EDIT - Use new sound channel for headphones - ORIGINAL:
 		active_song_sound.channel = CHANNEL_JUKEBOX
 		*/ // ORIGINAL END - SPLURT EDIT START:
-		active_song_sound.channel = !requires_range_check ? CHANNEL_JUKEBOX : CHANNEL_HEADPHONES
+		active_song_sound.channel = requires_range_check ? CHANNEL_JUKEBOX : CHANNEL_HEADPHONES
 		// SPLURT EDIT END
 		active_song_sound.priority = 255
 		active_song_sound.falloff = 2
@@ -321,7 +321,7 @@
 	/* SPLURT EDIT - Use new sound channel for headphones - ORIGINAL:
 	no_longer_listening.stop_sound_channel(CHANNEL_JUKEBOX)
 	*/ // ORIGINAL END - SPLURT EDIT START:
-	no_longer_listening.stop_sound_channel(!requires_range_check ? CHANNEL_JUKEBOX : CHANNEL_HEADPHONES)
+	no_longer_listening.stop_sound_channel(requires_range_check ? CHANNEL_JUKEBOX : CHANNEL_HEADPHONES)
 	// SPLURT EDIT END
 	UnregisterSignal(no_longer_listening, list(
 		COMSIG_MOB_LOGIN,

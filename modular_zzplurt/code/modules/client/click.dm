@@ -9,13 +9,22 @@
 
 /mob/living/carbon/human/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
 	if(isliving(attack_target))
+		var/previous_combat_mode
 		switch(combat_mode)
 			if(INTENT_DISARM)
 				modifiers -= LEFT_CLICK
 				modifiers[RIGHT_CLICK] = TRUE
+				previous_combat_mode = combat_mode
+				combat_mode = INTENT_HARM
+				. = ..()
+				combat_mode = previous_combat_mode
+				return
 			if(INTENT_GRAB)
 				//CtrlClickOn checks for next_move.. which ClickOn has just set right before calling this.
 				next_move = _last_next_move
+				previous_combat_mode = combat_mode
+				combat_mode = INTENT_HARM
 				CtrlClickOn(attack_target)
+				combat_mode = previous_combat_mode
 				return
 	return ..()

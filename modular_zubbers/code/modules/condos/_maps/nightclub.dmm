@@ -51,12 +51,6 @@
 /obj/item/rag{
 	pixel_y = 3
 	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/table/reinforced/plasmarglass,
 /turf/open/floor/light,
 /area/misc/condo)
 "gX" = (
@@ -132,7 +126,8 @@
 /area/misc/condo)
 "pb" = (
 /obj/machinery/jukebox/disco{
-	anchored = 1
+	anchored = 1;
+    req_access = null
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/misc/condo)
@@ -209,7 +204,7 @@
 /area/misc/condo)
 "uS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/jukebox,
+/obj/machinery/jukebox/no_access,
 /obj/structure/musician/piano/minimoog{
 	pixel_x = 15
 	},

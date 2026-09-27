@@ -110,7 +110,7 @@ LINEN BINS
 	layer = ABOVE_MOB_LAYER
 	pixel_x = 0
 	pixel_y = 0
-	pixel_z = sleeper.pixel_z // Account for possible mob elevation
+	pixel_z = 3 // SPLURT EDIT: Don't use mob's pixel_z since it's too high due to skyrat code lifting the player up
 	balloon_alert(sleeper, "covered")
 	var/angle = sleeper.lying_prev
 	dir = angle2dir(angle + 180) // 180 flips it to be the same direction as the mob
@@ -393,7 +393,7 @@ LINEN BINS
 	add_overlay(gondola_mouth)
 	add_overlay(gondola_eyes)
 
-/obj/item/bedsheet/gondola/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/bedsheet/gondola/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += mutable_appearance(icon_file, gondola_mouth)

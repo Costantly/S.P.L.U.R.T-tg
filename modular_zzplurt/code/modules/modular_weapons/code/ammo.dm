@@ -11,30 +11,52 @@
 	caliber = CALIBER_9X17MM
 	max_ammo = 30
 	multitype = FALSE
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 9,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4,
+	)
 
 /obj/item/ammo_box/magazine/mps5/ap
 	name = "\improper MP-S5 magazine (9x17mm AP)"
 	icon_state = "smg9x17mmAP"
 	base_icon_state = "smg9x17mmAP"
 	ammo_type = /obj/item/ammo_casing/c9x17mm/ap
+	custom_materials = list(
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 8,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4,
+	)
 
 /obj/item/ammo_box/magazine/mps5/hp
 	name = "\improper MP-S5 magazine (9x17mm HP)"
 	icon_state = "smg9x17mmHP"
 	base_icon_state = "smg9x17mmHP"
 	ammo_type = /obj/item/ammo_casing/c9x17mm/hp
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3,
+	)
 
 /obj/item/ammo_box/magazine/mps5/ihdf
 	name = "\improper MP-S5 magazine (9x17mm Intelligent Dispersal Foam)"
 	icon_state = "smg9x17mmDF"
 	base_icon_state = "smg9x17mmDF"
 	ammo_type = /obj/item/ammo_casing/c9x17mm/ihdf
+	custom_materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+	)
 
 /obj/item/ammo_box/magazine/mps5/rubber
 	name = "\improper MP-S5 magazine (9x17mm Rubber)"
 	icon_state = "smg9x17mmR"
 	base_icon_state = "smg9x17mmR"
 	ammo_type = /obj/item/ammo_casing/c9x17mm/rubber
+	custom_materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+	)
 
 // MP-S5 VIG CASINGS
 /obj/item/ammo_casing/c9x17mm
@@ -124,3 +146,37 @@
 
 /obj/projectile/bullet/c46x30mm/ap
 	armour_penetration = 45
+
+// PRIVATE SECURITY AR AMMO CODE
+
+/obj/item/ammo_box/magazine/c68
+	name = "Bulwark rifle magazine (6.8mm Caseless)"
+	desc = "A magazine loaded with 6.8mm caseless rounds, specifically used for modern Nanotrasen rifles."
+	icon = 'modular_zzplurt/icons/obj/weapons/guns/ballisticmags.dmi'
+	icon_state = "ar68mm"
+	base_icon_state = "ar68mm"
+	ammo_type = /obj/item/ammo_casing/c68
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+	multiple_sprite_use_base = TRUE
+	caliber = CALIBER_68MM
+	max_ammo = 30
+	multitype = FALSE
+
+/obj/item/ammo_casing/c68
+	name = "6.8mm caseless round"
+	desc = "A high-velocity caseless round used in modern Nanotrasen rifles."
+	icon_state = "223-casing"
+	caliber = CALIBER_68MM
+	projectile_type = /obj/projectile/bullet/c68
+	advanced_print_req = TRUE
+
+/obj/item/ammo_casing/c68/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
+
+/obj/projectile/bullet/c68
+	name = "6.8mm caseless bullet"
+	damage = 27
+	armour_penetration = 20
+	wound_bonus = -15
+	wound_falloff_tile = 0

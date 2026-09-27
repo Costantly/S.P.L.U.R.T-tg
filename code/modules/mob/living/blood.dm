@@ -91,7 +91,6 @@
 
 /// Updates effects that rely on blood volume or status, like blood HUDs.
 /mob/living/proc/update_blood_effects()
-	living_flags &= ~BLOOD_UPDATE_QUEUED
 	blood_hud_set_status()
 
 /// Updates effects that rely on whether the mob can have blood.
@@ -161,8 +160,9 @@
 	if((sigreturn & HANDLE_BLOOD_HANDLED) || !CAN_HAVE_BLOOD(src))
 		return
 
+	var/heart_blood_multiplier = get_heart_blood_regeneration_multiplier()
 	//Blood regeneration if there is some space
-	if(!(sigreturn & HANDLE_BLOOD_NO_NUTRITION_DRAIN) && get_blood_volume() < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_NO_BLOOD_REGEN)) // SPLURT EDIT - NO BLOOD REGEN TRAIT
+	if(heart_blood_multiplier && !(sigreturn & HANDLE_BLOOD_NO_NUTRITION_DRAIN) && get_blood_volume() < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_NO_BLOOD_REGEN)) // SPLURT EDIT - NO BLOOD REGEN TRAIT
 		var/nutrition_ratio = round(nutrition / NUTRITION_LEVEL_WELL_FED, 0.2)
 
 		if(satiety > 80)
@@ -185,9 +185,8 @@
 			adjust_thirst(-thirst_ratio * THIRST_FACTOR)
 		// SPLURT ADDITION END - THIRST
 
-		var/blood_to_restore = BLOOD_REGEN_FACTOR * physiology.blood_regen_mod * nutrition_ratio * seconds_per_tick + (0.5 * thirst_ratio) // SPLURT EDIT - Added thirst ratio to blood restoration.
+		var/blood_to_restore = BLOOD_REGEN_FACTOR * physiology.blood_regen_mod * heart_blood_multiplier * nutrition_ratio * seconds_per_tick + (0.5 * thirst_ratio) // SPLURT EDIT - Added thirst ratio to blood restoration.
 		var/blood_restored = adjust_blood_volume(blood_to_restore, maximum = BLOOD_VOLUME_NORMAL)
-
 		if (blood_restored > 0)
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR * seconds_per_tick * (blood_restored / blood_to_restore))
 
@@ -197,7 +196,7 @@
 		bleed(bleed_rate * seconds_per_tick)
 		bleed_warn(bleed_rate)
 
-	for (var/obj/item/bodypart/bodypart as anything in bodyparts)
+	for (var/obj/item/bodypart/bodypart as anything in get_bodyparts())
 		if (bodypart.generic_bleedstacks)
 			bodypart.adjustBleedStacks(-1, 0)
 
@@ -209,7 +208,7 @@
 	var/modified_blood_volume = get_blood_volume(apply_modifiers = TRUE)
 
 	// Some effects are halved mid-combat.
-	var/determined_mod = has_status_effect(/datum/status_effect/determined) ? 0.5 : 0
+	var/determined_mod = has_status_effect(/datum/status_effect/determined) ? 0.5 : 1
 
 	var/word = pick("dizzy","woozy","faint")
 	switch(modified_blood_volume)
@@ -273,14 +272,14 @@
 	// If your ratio is less than one (you're missing any blood) and your oxyloss is under missing blood %, start getting oxy damage.
 	// This damage accrues faster the less blood you have.
 	// If the damage surpasses the KO threshold for oxyloss, then we'll always tick up so you die eventually
-	if(target_oxyloss > 0 && (get_oxy_loss() < target_oxyloss || (target_oxyloss >= OXYLOSS_PASSOUT_THRESHOLD && stat >= UNCONSCIOUS)))
+	if(target_oxyloss > 0 && (get_oxy_loss() < target_oxyloss || (target_oxyloss >= OXYLOSS_PASSOUT_THRESHOLD && IS_UNCONSCIOUS(src))))
 		// At roughly half blood this equals to 3 oxyloss per tick. At 90% blood it's close to 0.5
 		var/rounded_oxyloss = round(0.01 * (BLOOD_VOLUME_NORMAL - modified_blood_volume), 0.25) * seconds_per_tick
 		adjust_oxy_loss(rounded_oxyloss, updating_health = TRUE)
 
 /// Has each bodypart update its bleed/wound overlay icon states
 /mob/living/carbon/proc/update_bodypart_bleed_overlays()
-	for(var/obj/item/bodypart/iter_part as anything in bodyparts)
+	for(var/obj/item/bodypart/iter_part as anything in get_bodyparts())
 		iter_part.update_part_wound_overlay()
 
 /// Bleeds amount units of blood from the mob, sometimes creating a blood splatter on the floor.
@@ -307,7 +306,7 @@
 		return 0
 
 	. = 0
-	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
+	for(var/obj/item/bodypart/bodypart as anything in get_bodyparts())
 		. += bodypart.cached_bleed_rate
 
 /mob/living/carbon/human/get_bleed_rate()
@@ -376,7 +375,7 @@
 
 /mob/living/carbon/restore_blood()
 	. = ..()
-	for(var/obj/item/bodypart/bodypart_to_restore as anything in bodyparts)
+	for(var/obj/item/bodypart/bodypart_to_restore as anything in get_bodyparts())
 		bodypart_to_restore.setBleedStacks(0)
 
 /****************************************************
@@ -417,7 +416,7 @@
 
 	if(blood_data["viruses"] && transfer_viruses)
 		for(var/datum/disease/blood_disease as anything in blood_data["viruses"])
-			if((blood_disease.spread_flags & DISEASE_SPREAD_SPECIAL) || (blood_disease.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
+			if((blood_disease.spread_flags & (DISEASE_SPREAD_SPECIAL|DISEASE_SPREAD_NON_CONTAGIOUS)))
 				continue
 			target.ForceContractDisease(blood_disease)
 
@@ -456,9 +455,7 @@
 	if (!blood_type || !can_bleed())
 		return
 
-	var/blood_data = list()
-	blood_data["blood_type"] = blood_type
-	blood_data["blood_DNA"] = blood_type.dna_string
+	var/list/blood_data = blood_type.get_default_blood_data()
 
 	if (reagents)
 		var/list/temp_chem = list()
@@ -517,7 +514,7 @@
 	blood_data["gender"] = gender
 	blood_data["real_name"] = real_name
 	if (dna)
-		blood_data["blood_DNA"] = dna.unique_enzymes
+		blood_data[BLOOD_DATA_DNA] = dna.unique_enzymes
 		blood_data["features"] = dna.features
 
 	blood_data["quirks"] = list()
@@ -679,7 +676,7 @@
  * * splatter_direction: Which direction the blood is flying
  * * splatter_strength: How many tiles it can go, and how many items it can pass over and dirty
  */
-/mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
+/mob/living/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	// Check if we can bleed and if our splatter can even go anywhere
 	if(!isturf(loc) || can_bleed(BLOOD_COVER_TURFS) != BLEED_SPLATTER)
 		return

@@ -191,3 +191,32 @@
 	name = "yellow trencher officer cap"
 	desc = "An army officer cap with yellow pin."
 	icon_state = "goner_offcap_y"
+
+/obj/item/clothing/head/helmet/novisor
+	desc = "Standard Security gear. Protects the head from impacts, this one lacks a visor over the eyes."
+	icon_state = "helmet-novisor"
+	flags_cover = EARS_COVERED
+
+/obj/item/clothing/head/helmet/swat/nanotrasen/ntps
+	name = "\improper Nanotrasen SWAT helmet"
+	desc = "A heavy-looking helmet with heavy armor plating within, it's dawned with a cyan visor to protect the eyes and has a large \
+	silver Nanotrasen logo on the front of the helmet. Usually worn by Nanotrasen Private Security."
+	icon = 'modular_zzplurt/icons/obj/clothing/head.dmi'
+	worn_icon = 'modular_zzplurt/icons/mob/clothing/head.dmi'
+	icon_state = "swat_ntps"
+	base_icon_state = "swat_ntps"
+
+/obj/item/clothing/head/helmet/swat/nanotrasen/ntps/sergeant
+	name = "\improper Nanotrasen SWAT officer helmet"
+	desc = "A heavy-looking helmet with heavy armor plating within, it's dawned with a cyan visor to protect the eyes and has a large \
+	golden Nanotrasen logo on the front of the helmet. Usually worn by Nanotrasen Private Security's NCOs."
+	icon_state = "swat_ntps_sgt"
+	base_icon_state = "swat_ntps_sgt"
+
+/obj/item/clothing/head/helmet/mercenary
+	name = "mercenary helmet"
+	desc = "The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle."
+	icon = 'modular_zzplurt/icons/obj/clothing/head.dmi'
+	worn_icon = 'modular_zzplurt/icons/mob/clothing/head.dmi'
+	icon_state = "mercenary_helmet"
+	flags_cover = EARS_COVERED

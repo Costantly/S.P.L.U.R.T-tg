@@ -10,12 +10,13 @@
 		TAG_MEDIUM = 1,
 		TAG_HIGH = 0
 		)
-	storyteller_type = STORYTELLER_TYPE_INTENSE | STORYTELLER_TYPE_ANTAGS
+	storyteller_type = STORYTELLER_TYPE_INTENSE
 
 /datum/storyteller/medium/opfor
-	name = /datum/storyteller/medium::name + " (OPFOR)"
-	desc = /datum/storyteller/medium::desc + " (antags are OPFOR-only)"
-	welcome_text = /datum/storyteller/medium::welcome_text + span_bold(" (Open an OPFOR application if you're interested in becoming an antag for this round)")
+	name = "Freeform Chaos (Events/No Antag Rolls)"
+	desc = "Random events come at a moderate pace and antagonists come from space or player generation (OPFORs) rather than from random generation."
+	welcome_text = "Crew-based antagonists will not be randomly rolled this round, use the Opposing Force verb to work out an idea with online event admins."
+	antag_divisor = 0
 
 	track_data = /datum/storyteller_data/tracks/medium/opfor
 
@@ -27,7 +28,8 @@
 		TAG_HIGH = 0,
 		TAG_OPFOR_ONLY = 0
 	)
-	storyteller_type = STORYTELLER_TYPE_INTENSE | STORYTELLER_TYPE_OPFOR_ONLY
+	storyteller_type = STORYTELLER_TYPE_CALM
 
 /datum/storyteller_data/tracks/medium/opfor
 	threshold_crewset = INFINITY
+	threshold_ghostset = INFINITY
